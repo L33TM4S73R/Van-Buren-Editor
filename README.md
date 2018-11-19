@@ -1,5 +1,5 @@
 # Van-Buren-Editor
-This is a test repo to house code of an editor for the Van Buren Tech Demo, name liable to change
+This is a test repo to house code of an editor for the Van Buren Tech Demo, name liable to change(BTW, how do I change the name to where it shows up on Github?)
 
 Now I understand this isn't exactly the proper way to do a README, or the most professional way but it's 8:55 in the morning and I stayed up all night browsing the internet for a 1948 Dodge 230 I6 6V Positive ground Generator core(long story).
 
