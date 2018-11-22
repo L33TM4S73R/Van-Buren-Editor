@@ -1,6 +1,6 @@
 # Van-Buren-Editor
 
-F.Y.I I have no clue how Github does merges, so if you made a branch of this and push or pull, I might break everything, sorry bros/sis(sises, sis', si?).
+F.Y.I I have no clue how Github does merges, so if you made a branch of this and push or pull, I might break everything, sorry bros.
 
 This is a test repo to house code of an editor for the Van Buren Tech Demo, name liable to change(BTW, how do I change the name to where it shows up on Github?)
 
