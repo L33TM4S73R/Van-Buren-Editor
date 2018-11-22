@@ -1,4 +1,7 @@
 *.exe
 *.EXE
+*.dll
+*.DLL
 *.CRT
 PPIT_EDIT_TEST_II.C
+PPIT_STRING_TEST.C

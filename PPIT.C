@@ -28,30 +28,37 @@ struct ITM { // ITM file: WEA, ITM, ??CHM??
 
 struct RLE { // Pip-boy mini-map file
 	int HEAD;
-	int LGTD
+	int LGTD;
 	int INFO;
 	int LGTR;
 };
 
-void CRTEdit()
+//void CRTEdit()
+//{
+//	printf( "CRT Edit called.\n" ); // Development Feature - Delete
+//	flush( source_file_name )
+//	printf("Enter the name of the .CRT file you wish to modify.\n");
+//	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
+//	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
+//
+//	printf("Reading Input File...\n");
+//	source_file = fopen(source_file_name,"r+"); // read+write binary mode
+// 
+//	if( source_file == NULL )
+//	{
+//		perror("Error while reading the file.\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	CRTEditMenu()
+//}
+//
+void ITMEdit()
 {
-	printf( "CRT Edit called.\n" ); // Development Feature - Delete
-	fflush( source_file_name )
-	printf("Enter the name of the .CRT file you wish to modify.\n");
-	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
-	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
-
-	printf("Reading Input File...\n");
-	source_file = fopen(source_file_name,"r+"); // read+write binary mode
-   
-	if( source_file == NULL )
-	{
-		perror("Error while reading the file.\n");
-		exit(EXIT_FAILURE);
-	}
-
+    printf( "ITM Edit called.\n" ); // Development Feature - Delete
 	
 }
+
 void RLEEdit()
 {
     printf( "RLE Edit called.\n" ); // Development Feature - Delete
@@ -120,17 +127,17 @@ void Disclaimer()
 }
 void CRTEditMenu()
 {
-	int EditMenuInput;
+	int CRTEditMenuInput;
 	printf( "Inauguration Tool CRT Editing Menu\n" );
 	printf( "1. Edit Race\n" );
-	printf( "2. Edit Gender\n" );
-	printf( "3. Edit Body\n" );
-	printf( "4. Hex View\n" );
+	printf( "2. *DISABLED* Edit Gender\n" );
+	printf( "3. *DISABLED* Edit Body\n" );
+	printf( "4. *DISABLED* Hex View\n" );
 	printf( "5. Exit\n" );
 	printf( "Note: Please refer to Technical Info.txt\n" );
-	scanf( "%d", &EditMenuInput );
-	printf( "Input is %d\n", EditMenuInput ); // Development Feature - Delete
-	switch ( EditMenuInput ) {
+	scanf( "%d", &CRTEditMenuInput );
+	printf( "Input is %d\n", CRTEditMenuInput ); // Development Feature - Delete
+	switch ( CRTEditMenuInput ) {
 		case 1:
 			SetRace();
 			break;
@@ -153,14 +160,36 @@ void CRTEditMenu()
 			break;
 	}
 }
+
+void CRTEdit()
+{
+	printf( "CRT Edit called.\n" ); // Development Feature - Delete
+//	flush( source_file_name )
+	printf("Enter the name of the .CRT file you wish to modify.\n");
+	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
+	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
+
+	printf("Reading Input File...\n");
+	source_file = fopen(source_file_name,"r+"); // read+write binary mode
+   
+	if( source_file == NULL )
+	{
+		perror("Error while reading the file.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	CRTEditMenu();
+}
+
 int main(void)
 {
 	int StartMenuInput;
-	Disclaimer()
+	Disclaimer();
 	printf( "Inauguration Tool Start Menu\n" );
-	printf( "1. Load a RLE to Edit\n" );
-	printf( "2. Load a ITM to Edit\n" );
-	printf( "3. Exit\n" );
+	printf( "1. Load a CRT to Edit\n" );
+	printf( "2. *DISABLED* Load a ITM to Edit\n" );
+	printf( "3. *DISABLED* Load a RLE to Edit\n" );
+	printf( "4. Exit\n" );
 	printf( "Note: Please refer to Technical Info.txt\n" );
 	scanf( "%d", &StartMenuInput );
 	printf( "Input is %d\n", StartMenuInput ); // Development Feature - Delete
@@ -172,15 +201,17 @@ int main(void)
 			ITMEdit();
 			break;
 		case 3:
+			RLEEdit();
+			break;
+		case 4:
 			printf( "Thank you for using this program.\n" );
 			break;
 		default:
-			printf( "Error, Done!\n " );
+			printf( "Error, Exiting Program!\n " );
 //			perror( "Error, quitting!\n " );
 //			exit( EXIT_FAILURE );
 			break;
 	}
-//	CRTEditMenu();
 	getchar();
 //	return 0;
 	
