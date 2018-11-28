@@ -1,7 +1,13 @@
 // Project Presidents - Inauguration Tool CRT,ITM,&RLE Test written in C
+
+// C Standard Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+// 3rd Party Libraries(May never get used with my track record)
+
+// Project President Libraries
 
 	char /*ch, */source_file_name[256]/*, target_file_name[256]*/; // The name of the files to input and output
 	char race_input[3]/*, gender_input[1], body_input[7]*/; // The values to be changed

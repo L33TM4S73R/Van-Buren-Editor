@@ -1,0 +1,35 @@
+Use these inputs for the 3-character Race prompt.:
+Hum
+
+Use these inputs for the 1-character Gender prompt.:
+F
+M
+
+Use these inputs for the 3-character Body prompt.:
+Fat
+Nor
+Str
+Wir
+
+Description of input parts:
+
+	Hum = Human
+
+	F & M = Female and Male, respectively
+
+	Fat, Nor, Str, & Wir = Fat, Normal, Strong & Wiry respectively
+
+This then loads a .G3D file based on the body chosen.
+
+Van Buren breaks these down into parts.
+
+	<Race><Gender><Bodytype>
+
+These may be used by the script commands:
+
+GetGender()
+SetGender()
+GetEthnicity()
+SetEthnicity()
+GetSubrace()
+SetSubrace()
