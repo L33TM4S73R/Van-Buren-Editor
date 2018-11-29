@@ -1,11 +1,13 @@
 # Van-Buren-Editor
 
-F.Y.I I have no clue how Github does merges, so if you made a branch of this and push or pull, I might break everything, sorry bros.
+F.Y.I I have no clue how Github does merges, so if you made a branch of this and/or push or pull, I might break everything, sorry.
 
-This is a test repo to house code of an editor for the Van Buren Tech Demo, name liable to change(BTW, how do I change the name to where it shows up on Github?)
+	This is a repo to house code of a command-line, WIP Editor for the Van Buren Tech Demo, written in C, perhaps C++ in the future. The name of this project is currently Project Presidents(BTW, how do I change the name to where it shows up on Github?). This program is being written in Dev-C++ as it is a very lightweight environment, this may change if required but not very likely. Future versions may use SDL if I can put 2 and 2 together and figure out why including libraries in a project hates me.
 
-Now I understand this isn't exactly the proper way to do a README, or the most professional way but it's 8:55 in the morning and I stayed up all night browsing the internet for a 1948 Dodge 230 I6 6V Positive ground Generator core(long story).
+	As I am currently learning C there may be coding issues or outdated methods. I will fix these as I become aware of them. Anyone is free to take this code and modify it to their hearts content, not that there is much code to it.
 
-This is a Concept WIP Editor for the Van Buren Tech Demo, written in C, perhaps C++ in the future. This program is being written in Dev-C++ as it is a very lightweight environment, this may change if required but not very likely. Future versions may use SDL if I can put 2 and 2 together and figure out why including libraries in a project hates me. As I am currently learning C there may be coding issues or outdated methods. I will fix these as I become aware of them. Anyone is free to take this code and modify it to their hearts content, not that there is much code to it.
+Regards, RedneckHax0r
 
-God speed Gentlemen/Gentleladies, Regards RedneckHax0r and/or L33TMaster(I need to pick one, don't I?)
+Compiling:
+
+Compiling this editor is easy, simply download a zip of this repo, then compile the PPIT.C using any C compiler, this program relies on no 3rd party libraries as of yet.

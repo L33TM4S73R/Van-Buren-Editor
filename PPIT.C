@@ -9,6 +9,8 @@
 
 // Project President Libraries
 
+	int Restart;
+	char RestartPrompt ='y';
 	char /*ch, */source_file_name[256]/*, target_file_name[256]*/; // The name of the files to input and output
 	char race_input[3]/*, gender_input[1], body_input[7]*/; // The values to be changed
 	FILE *source_file/*, *target_file*/; // The files to be input and output
@@ -44,6 +46,7 @@ struct RLE { // Pip-boy mini-map file
 //	printf( "CRT Edit called.\n" ); // Development Feature - Delete
 //	flush( source_file_name )
 //	printf("Enter the name of the .CRT file you wish to modify.\n");
+//	scanf("%d", &source_file_name);
 //	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
 //	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
 //
@@ -114,14 +117,14 @@ void SetBody()
 void HexView()
 {
     printf( "Hex View called.\n" ); // Development Feature - Delete
-//	int i;
+	int i;
 	
-//	printf( "Hex View of Input %s File :\n", source_file_name );
-//	while( ( ch = fgetc( source_file ) ) != EOF )
-//	{
-//		printf( "%02X \n",ch );
-//		if( !( ++i % 16 ) ) putc( '\n', stdout );
-//	}
+	printf( "Hex View of Input %s File :\n", source_file_name );
+	while( ( ch = fgetc( source_file ) ) != EOF )
+	{
+		printf( "%02X ",ch );
+		if( !( ++i % 16 ) ) putc( '\n', stdout );
+	}
 }
 
 void Disclaimer()
@@ -131,16 +134,17 @@ void Disclaimer()
 	printf( "Right now, just consider this program a proof-of-concept.\n" );
 	printf( "All things are liable to change, thank you.\n" );
 }
+
 void CRTEditMenu()
 {
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool CRT Editing Menu\n" );
+	printf( "NOTE: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
 	printf( "1. Edit Race\n" );
 	printf( "2. *DISABLED* Edit Gender\n" );
 	printf( "3. *DISABLED* Edit Body\n" );
-	printf( "4. *DISABLED* Hex View\n" );
+	printf( "4. Hex View\n" );
 	printf( "5. Exit\n" );
-	printf( "Note: Please refer to Technical Info.txt\n" );
 	scanf( "%d", &CRTEditMenuInput );
 	printf( "Input is %d\n", CRTEditMenuInput ); // Development Feature - Delete
 	switch ( CRTEditMenuInput ) {
@@ -148,112 +152,134 @@ void CRTEditMenu()
 			SetRace();
 			break;
 		case 2:
-			SetGender();
+//			SetGender();
+			perror( "Disabled, Quitting!\n " );
+			exit( EXIT_FAILURE );
 			break;
 		case 3:
-			SetBody();
+//			SetBody();
+			perror( "Disabled, Quitting!\n " );
+			exit( EXIT_FAILURE );
 			break;
 		case 4:
 			HexView();
 			break;
 		case 5:
 			printf( "Thank you for using this program.\n" );
+			exit( EXIT_SUCCESS );
 			break;
 		default:
-			printf( "Error, Done!\n " );
-//			perror( "Error, quitting!\n " );
-//			exit( EXIT_FAILURE );
+			perror( "No Valid Input, Quitting!\n " );
+			exit( EXIT_FAILURE );
 			break;
 	}
 }
 
-void CRTEdit()
+void CRTEdit( )
 {
 	printf( "CRT Edit called.\n" ); // Development Feature - Delete
-//	flush( source_file_name )
-	printf("Enter the name of the .CRT file you wish to modify.\n");
+//	fflush( source_file_name )
+	printf( "Enter the name of the .CRT file you wish to modify.\n" );
 	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
 	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
 
-	printf("Reading Input File...\n");
+	printf( "Reading Input File...\n" );
 	source_file = fopen(source_file_name,"r+"); // read+write binary mode
    
 	if( source_file == NULL )
 	{
-		perror("Error while reading the file.\n");
-		exit(EXIT_FAILURE);
+		perror( "Error while reading the file, Quitting!\n" );
+		exit( EXIT_FAILURE );
 	}
 
-	CRTEditMenu();
+	CRTEditMenu( );
 }
 
-int main(void)
+int main( void )
 {
-	int StartMenuInput;
-	Disclaimer();
-	printf( "Inauguration Tool Start Menu\n" );
-	printf( "1. Load a CRT to Edit\n" );
-	printf( "2. *DISABLED* Load a ITM to Edit\n" );
-	printf( "3. *DISABLED* Load a RLE to Edit\n" );
-	printf( "4. Exit\n" );
-	printf( "Note: Please refer to Technical Info.txt\n" );
-	scanf( "%d", &StartMenuInput );
-	printf( "Input is %d\n", StartMenuInput ); // Development Feature - Delete
-	switch ( StartMenuInput ) {
-		case 1:
-			CRTEdit();
-			break;
-		case 2:
-			ITMEdit();
-			break;
-		case 3:
-			RLEEdit();
-			break;
-		case 4:
-			printf( "Thank you for using this program.\n" );
-			break;
-		default:
-			printf( "Error, Exiting Program!\n " );
-//			perror( "Error, quitting!\n " );
-//			exit( EXIT_FAILURE );
-			break;
-	}
-	getchar();
-//	return 0;
-	
-/*
-	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
-
-	printf("Reading Input File...\n");
-	source_file = fopen(source_file_name,"r+"); // read+write binary mode
-   
-	if( source_file == NULL )
+	do
 	{
-		perror("Error while reading the file.\n");
-		exit(EXIT_FAILURE);
-	}
+		int StartMenuInput;
+		Disclaimer();
+		printf( "Inauguration Tool Start Menu\n" );
+		printf( "1. Load a CRT to Edit\n" );
+		printf( "2. *DISABLED* Load a ITM to Edit\n" );
+		printf( "3. *DISABLED* Load a RLE to Edit\n" );
+		printf( "4. Exit\n" );
+		printf( "Note: Please refer to Technical Info.txt\n" );
+		scanf( "%d", &StartMenuInput );
+		printf( "Input is %d\n", StartMenuInput ); // Development Feature - Delete
+		switch ( StartMenuInput ) {
+			case 1:
+				CRTEdit( );
+				break;
+			case 2:
+//				ITMEdit( );
+				perror( "Disabled, Quitting!\n " );
+				exit( EXIT_FAILURE );
+				break;
+			case 3:
+//				RLEEdit( );
+				perror( "Disabled, Quitting!\n " );
+				exit( EXIT_FAILURE );
+				break;
+			case 4:
+				printf( "Thank you for using this program.\n" );
+				break;
+				exit( EXIT_SUCCESS );
+			default:
+				perror( "No Valid Input, Quitting!\n " );
+				exit( EXIT_FAILURE );
+				break;
+		}
 
-//	printf("Enter the name of the .CRT file to be exported.\n");
-//	fgets(target_file_name, sizeof(target_file_name), stdin);; // Input File name to be exported
+    		printf( "Restart?(y/n): \n" );
+    		fflush(stdin);
+    		scanf( "%c", &RestartPrompt );
 
-//	target_file = fopen(target_file_name,"ab+"); // Open or create file for writing
-//	printf("Creating backup of file...\n");
+    		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
+				Restart = 1;
 
-//	if( target_file_name == NULL )
-//	{
-//		fclose(source_file);
-//		perror("Error while creating and reading backup.\n");
-//		exit(EXIT_FAILURE);
-//	}
+//		return 0;
+
+// Start of older code to be restructured
+/*
+		source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
+
+		printf("Reading Input File...\n");
+		source_file = fopen(source_file_name,"r+"); // read+write binary mode
+
+		if( source_file == NULL )
+		{
+			perror("Error while reading the file.\n");
+			exit(EXIT_FAILURE);
+		}
+
+//		printf("Enter the name of the .CRT file to be exported.\n");
+//		fgets(target_file_name, sizeof(target_file_name), stdin);; // Input File name to be exported
+
+//		target_file = fopen(target_file_name,"ab+"); // Open or create file for writing
+//		printf("Creating backup of file...\n");
+
+//		if( target_file_name == NULL )
+//		{
+//			fclose(source_file);
+//			perror("Error while creating and reading backup.\n");
+//			exit(EXIT_FAILURE);
+//		}
 	
-//	while ((ch = fgetc(source_file)) != EOF)
-//	fputc(ch, target_file);
+//		while ((ch = fgetc(source_file)) != EOF)
+//		fputc(ch, target_file);
 
-//	printf("Backup created successfully.\n");
+//		printf("Backup created successfully.\n");
 
-	fclose(source_file);
-// <!!FUTUREx2!!>	fclose(target_file);
+//		fclose(source_file);
+//		fclose(target_file);
    
 	return(0);
 */
+    } while (!Restart);
+		printf("Thank you for using this program.\n");
+		exit ( EXIT_SUCCESS );
+
 }

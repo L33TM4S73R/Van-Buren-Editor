@@ -1,3 +1,5 @@
+CRT(Creature) File Information:
+
 Use these inputs for the 3-character Race prompt.:
 Hum
 
