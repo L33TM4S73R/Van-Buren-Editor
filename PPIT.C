@@ -41,9 +41,9 @@ struct RLE { // Pip-boy mini-map file
 	int LGTR;
 };
 
-//void CRTEdit()
-//{
-//	printf( "CRT Edit called.\n" ); // Development Feature - Delete
+void CRTEdit()
+{
+	printf( "CRT Edit called.\n" ); // Development Feature - Delete
 //	flush( source_file_name )
 //	printf("Enter the name of the .CRT file you wish to modify.\n");
 //	scanf("%d", &source_file_name);
@@ -60,8 +60,8 @@ struct RLE { // Pip-boy mini-map file
 //	}
 //
 //	CRTEditMenu()
-//}
-//
+}
+
 void ITMEdit()
 {
     printf( "ITM Edit called.\n" ); // Development Feature - Delete
