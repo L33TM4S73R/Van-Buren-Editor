@@ -10,8 +10,7 @@
 // Project President Libraries
 
 	int Restart;
-	char RestartPrompt ='y';
-	char /*ch, */source_file_name[256]/*, target_file_name[256]*/; // The name of the files to input and output
+	char ch, source_file_name[256]/*, target_file_name[256]*/; // The name of the files to input and output
 	char race_input[3]/*, gender_input[1], body_input[7]*/; // The values to be changed
 	FILE *source_file/*, *target_file*/; // The files to be input and output
 
@@ -41,27 +40,6 @@ struct RLE { // Pip-boy mini-map file
 	int LGTR;
 };
 
-void CRTEdit()
-{
-	printf( "CRT Edit called.\n" ); // Development Feature - Delete
-//	flush( source_file_name )
-//	printf("Enter the name of the .CRT file you wish to modify.\n");
-//	scanf("%d", &source_file_name);
-//	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
-//	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
-//
-//	printf("Reading Input File...\n");
-//	source_file = fopen(source_file_name,"r+"); // read+write binary mode
-// 
-//	if( source_file == NULL )
-//	{
-//		perror("Error while reading the file.\n");
-//		exit(EXIT_FAILURE);
-//	}
-//
-//	CRTEditMenu()
-}
-
 void ITMEdit()
 {
     printf( "ITM Edit called.\n" ); // Development Feature - Delete
@@ -75,12 +53,14 @@ void RLEEdit()
 }
 void SetRace()
 {
-	printf( "Enter the desired 3-character race type.\n" );
+	printf( "Set Race called.\n" ); //Development Feature - Delete
+	printf( "Enter the desired 7-character race type.\n" );
+	fflush(stdin);
 	fgets( race_input, sizeof( race_input ), stdin ); // Input new race type
 	printf( "Current race type : %s", race_input ); // Development Feature - Delete
 
 //	printf( "Making Changes...\n" );
-//	fseek( source_file, 14, SEEK_SET ); // Moving pointer for race - Only for PCFemale.CRT
+//	fseek( source_file, 14, SEEK_SET ); // Moving pointer for race - Only for select .CRT files
 
 //	printf( "%ld\n", ftell( source_file ) ); // Development Feature - Delete
 //	fputs( race_input, source_file );
@@ -90,6 +70,7 @@ void SetGender()
 {
     printf( "Set Gender called.\n" ); // Development Feature - Delete
 //	printf( "Enter the desired 1-character gender type.\n" );
+//	fflush(stdin);
 //	fgets( gender_input, sizeof( gender_input ), stdin ); // Input new gender type
 //	printf( "Current gender type : %s", gender_input ); // Development Feature - Delete
 
@@ -104,6 +85,7 @@ void SetBody()
 {
     printf( "Set Body called.\n" ); // Development Feature - Delete
 //	printf( "Enter the desired 3-character body type.\n" );
+//	fflush(stdin);
 //	fgets( body_input, sizeof( body_input ), stdin ); // Input new body type
 //	printf( "Current body type : %s", body_input ); // Development Feature - Delete
 
@@ -154,12 +136,12 @@ void CRTEditMenu()
 		case 2:
 //			SetGender();
 			perror( "Disabled, Quitting!\n " );
-			exit( EXIT_FAILURE );
+			exit( EXIT_SUCCESS );
 			break;
 		case 3:
 //			SetBody();
 			perror( "Disabled, Quitting!\n " );
-			exit( EXIT_FAILURE );
+			exit( EXIT_SUCCESS );
 			break;
 		case 4:
 			HexView();
@@ -178,8 +160,9 @@ void CRTEditMenu()
 void CRTEdit( )
 {
 	printf( "CRT Edit called.\n" ); // Development Feature - Delete
-//	fflush( source_file_name )
+	fflush(stdin);
 	printf( "Enter the name of the .CRT file you wish to modify.\n" );
+//	scanf("%d", &source_file_name);
 	fgets( source_file_name, sizeof( source_file_name ), stdin ); // Input File name to be imported
 	source_file_name[strlen(source_file_name)-1] = 0x00; // something to do with string length
 
@@ -205,7 +188,8 @@ int main( void )
 		printf( "1. Load a CRT to Edit\n" );
 		printf( "2. *DISABLED* Load a ITM to Edit\n" );
 		printf( "3. *DISABLED* Load a RLE to Edit\n" );
-		printf( "4. Exit\n" );
+		printf( "4. Write errors to external log file(this session)\n" );
+		printf( "5. Exit\n" );
 		printf( "Note: Please refer to Technical Info.txt\n" );
 		scanf( "%d", &StartMenuInput );
 		printf( "Input is %d\n", StartMenuInput ); // Development Feature - Delete
@@ -216,14 +200,18 @@ int main( void )
 			case 2:
 //				ITMEdit( );
 				perror( "Disabled, Quitting!\n " );
-				exit( EXIT_FAILURE );
+				exit( EXIT_SUCCESS );
 				break;
 			case 3:
 //				RLEEdit( );
 				perror( "Disabled, Quitting!\n " );
-				exit( EXIT_FAILURE );
+				exit( EXIT_SUCCESS );
 				break;
 			case 4:
+				freopen( "error.log", "w", stderr );
+				perror( "Log file created.");
+				break;
+			case 5:
 				printf( "Thank you for using this program.\n" );
 				break;
 				exit( EXIT_SUCCESS );
@@ -235,6 +223,7 @@ int main( void )
 
     		printf( "Restart?(y/n): \n" );
     		fflush(stdin);
+			char RestartPrompt ='y';
     		scanf( "%c", &RestartPrompt );
 
     		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
