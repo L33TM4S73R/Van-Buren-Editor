@@ -4,7 +4,7 @@
 *.DLL
 *.CRT
 *.log
-PPIT_EDIT_TEST_II.C
+PPIT_EDIT_TEST.C
 PPIT_STRING_TEST.C
 SetGender.C
 SetGender.H

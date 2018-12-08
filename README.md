@@ -4,7 +4,7 @@ F.Y.I I have no clue how Github does merges, so if you made a branch of this and
 
 This is a repo to house code of a command-line, WIP Editor for the Van Buren Tech Demo, written in C, perhaps C++ in the future. The name of this project is currently Project Presidents(BTW, how do I change the name to where it shows up on Github?). This program is being written in Dev-C++ as it is a very lightweight environment, this may change if required but not very likely. Future versions may use SDL if I can put 2 and 2 together and figure out why including libraries in a project hates me.
 
-As I am currently learning C there may be coding issues or outdated methods. I will fix these as I become aware of them. Anyone is free to take this code and modify it to their hearts content, not that there is much code to it.
+As I am currently learning C there may be brute-force style coding issues,  outdated methods, and some things may be flat out wrong. I will fix and edit these mistakes as I become aware of them. Also, anyone is free to take this code and modify it to their hearts content, improve where I could not and all that.
 
 Regards, RedneckHax0r
 
