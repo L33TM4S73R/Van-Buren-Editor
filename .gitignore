@@ -6,5 +6,6 @@
 *.log
 PPIT_EDIT_TEST.C
 PPIT_STRING_TEST.C
+PPIT_DEC_TO_HEX.C
 SetGender.C
 SetGender.H

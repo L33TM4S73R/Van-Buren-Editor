@@ -10,10 +10,10 @@
 // Project President Libraries
 
 	int Restart, FileType;
-	char ch, InputFileName[256]/*, target_file_name[256]*/; // The name of the files to input and output
-	char race_input[3]/*, gender_input[1], body_input[7]*/; // The values to be changed
-	FILE* InputFile/*, *target_file*/; // The files to be input and output
-
+	char ch, InputFileName[256]/*, OutputFileName[256]*/; // The name of the files to input and output
+/*	char race_input[3], gender_input[1], body_input[7]*/; // The values to be changed
+	FILE* InputFile/*, *OutputFile*/; // The files to be input and output
+/*
 struct CRT { // CRT File: For NPCs, Creatures, and PC
 	int IsNPC;
 	int IsPC;
@@ -39,30 +39,48 @@ struct RLE { // Pip-boy mini-map file
 	int INFO;
 	int LGTR;
 };
-
+*/
 void RLEEdit()
 {
-	printf( "RLE Edit called.\n" ); // Development Feature - Delete
-	
+	perror( "RLE Edit Called.\n" );
+	printf( "Done!\n" );
+	perror( "RLE Edit Finished!\n");
 }
 void SetRace()
 {
-	printf( "Set Race called.\n" ); //Development Feature - Delete
+	char CRTRaceInputString[7];
+	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
+	perror( "Set Race Called.\n" );
+
+	printf( "Was: %s", CRTRaceInputString );// Find a way to translate to perror
 	printf( "Enter the desired 7-character race type.\n" );
 	fflush(stdin);
-	fgets( race_input, sizeof( race_input ), stdin ); // Input new race type
-	printf( "Current race type : %s", race_input ); // Development Feature - Delete
 
-//	printf( "Making Changes...\n" );
-//	fseek( source_file, 14, SEEK_SET ); // Moving pointer for race - Only for select .CRT files
+	printf( "Race input string length: %d\n", sizeof( CRTRaceInputString )  );// Find a way to translate to perror
+	printf( "Equivalent hexadecimal number of $placeholder$ is: %02X",CRTRaceInputStringLength );// Find a way to translate to perror
 
-//	printf( "%ld\n", ftell( InputFile ) ); // Development Feature - Delete
-//	fputs( race_input, InputFile );
+	fgets( CRTRaceInputString, sizeof( CRTRaceInputString ), stdin ); // Input new race type
+	printf( "Now: %s", CRTRaceInputString );// Find a way to translate to perror
+	if( CRTRaceInputStringLength == 7 )
+	{
+			printf( "Making Changes...\n" );
+			fseek( InputFile, 14, SEEK_SET ); // Moving pointer for race - Only for select .CRT files
+		//	fseek( InputFile, CRTRaceLocation, SEEK_SET )// Moving pointer for race
+			printf( "%ld\n", ftell( InputFile ) );// Find a way to translate to perror
+			fputs( CRTRaceInputString, InputFile );
+	}
+	else
+	{
+		//	printf( "Race length is to small or large\n" );
+		//	perror( "Invalid race length\n");
+		//	exit( EXIT_FAILURE );
+	}
 	printf( "Done!\n" );
+	perror( "Set Race Finished!\n" );
 }
 void SetGender()
 {
-	printf( "Set Gender called.\n" ); // Development Feature - Delete
+	perror( "Set Gender Called.\n" );
 //	printf( "Enter the desired 1-character gender type.\n" );
 //	fflush(stdin);
 //	fgets( gender_input, sizeof( gender_input ), stdin ); // Input new gender type
@@ -74,10 +92,11 @@ void SetGender()
 //	printf( "%ld\n", ftell( InputFile ) ); // Development Feature - Delete
 //	fputs( gender_input, InputFile );
 	printf( "Done!\n" );
+	perror( "Set Gender Finished!\n" );
 }
 void SetBody()
 {
-	printf( "Set Body called.\n" ); // Development Feature - Delete
+	perror( "Set Body Called.\n" );
 //	printf( "Enter the desired 3-character body type.\n" );
 //	fflush( stdin );
 //	fgets( body_input, sizeof( body_input ), stdin ); // Input new body type
@@ -89,10 +108,11 @@ void SetBody()
 //	printf("%ld\n", ftell( InputFile ) ); // Development Feature - Delete
 //	fputs( body_input, InputFile );
 	printf( "Done!\n" );
+	perror( "Set Body Finished!\n" );
 }
 void HexView()
 {
-	printf( "Hex View called.\n" ); // Development Feature - Delete
+	perror( "Hex View Called.\n" );
 	int i;
 	
 	printf( "Hex View of Input %s File :\n", InputFileName );
@@ -101,6 +121,8 @@ void HexView()
 		printf( "%02X ",ch );
 		if( !( ++i % 16 ) ) putc( '\n', stdout );
 	}
+	printf( "Done!\n" );
+	printf( "Hex View Finished!\n" );
 }
 
 void Disclaimer()
@@ -154,7 +176,7 @@ void CRTEditMenu()
 
 void CRTEdit( )
 {
-	printf( "CRT Edit called.\n" ); // Development Feature - Delete
+	perror( "CRT Edit called.\n" );
 /*	Need to find a way to define the source file being a CRT and put it here.*/
 	fflush( stdin );
 	printf( "Enter the name of the .CRT file you wish to modify.\n" );
@@ -177,7 +199,7 @@ void ITMEditMenu( )
 {
 	int ITMEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - ITM\n" );
-//	printf( "Inauguration Tool Editing Menu - 
+//	printf( "Inauguration Tool Editing Menu - \n, );
 	printf( "NOTE: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
 	printf( "1. Hex View\n" );
 	printf( "2. Exit\n" );
@@ -200,7 +222,7 @@ void ITMEditMenu( )
 }
 void ITMEdit( )
 {
-	printf( "ITM Edit called.\n" ); // Development Feature - Delete
+	perror( "ITM Edit called.\n" );
 /*	Need to find a way to define the source file being an ITM and put it here.*/
 	fflush( stdin );
 	printf( "Enter the name of the .ITM file you wish to modify.\n" );
@@ -226,7 +248,7 @@ int main( void )
 		int StartMenuInput;
 		Disclaimer();
 		printf( "Inauguration Tool Start Menu\n" );
-		printf( "1. Load a CRT to Edit\n" );
+		printf( "1. Load a Human CRT to Edit\n" );
 		printf( "2. *NOT FINISHED* Load an ITM to Edit\n" );
 		printf( "3. *DISABLED* Load a RLE to Edit\n" );
 		printf( "4. Write errors to external log file(this session)\n" );
@@ -273,42 +295,32 @@ int main( void )
 
 // Start of older code to be restructured
 /*
-		InputFileName[strlen(InputFileName)-1] = 0x00; // something to do with string length
+		printf( "Enter the name of the .CRT file to be exported.\n" );
+//		fgets( OutputFileName, sizeof( OutputFileName ), stdin );; // Input File name to be exported
 
-		printf("Reading Input File...\n");
-		InputFile = fopen(InputFileName,"r+"); // read+write binary mode
+//		OutputFile = fopen( OutputFileName,"ab+" ); // Open or create file for writing
+//		printf( "Creating backup of file...\n" );
 
-		if( InputFile == NULL )
-		{
-			perror("Error while reading the file.\n");
-			exit(EXIT_FAILURE);
-		}
-
-//		printf("Enter the name of the .CRT file to be exported.\n");
-//		fgets(target_file_name, sizeof(target_file_name), stdin);; // Input File name to be exported
-
-//		target_file = fopen(target_file_name,"ab+"); // Open or create file for writing
-//		printf("Creating backup of file...\n");
-
-//		if( target_file_name == NULL )
+//		if( OutputFileName == NULL )
 //		{
-//			fclose(InputFile);
-//			perror("Error while creating and reading backup.\n");
-//			exit(EXIT_FAILURE);
+//			fclose( InputFile );
+//			perror( "Error while creating and reading backup.\n" );
+//			exit( EXIT_FAILURE );
 //		}
 	
-//		while ((ch = fgetc(InputFile)) != EOF)
-//		fputc(ch, target_file);
+//		while ( ( ch = fgetc( InputFile ) ) != EOF )
+//		fputc( ch, OutputFile );
 
-//		printf("Backup created successfully.\n");
+//		printf( "Backup created successfully.\n" );
 
 //		fclose(InputFile);
-//		fclose(target_file);
    
 	return(0);
 */
-    } while (!Restart);
-		printf("Thank you for using this program.\n");
+    } while ( !Restart );
+		fclose( InputFile );
+//		fclose( OutputFile );
+		printf( "Thank you for using this program.\n" );
 		exit ( EXIT_SUCCESS );
 
 }
