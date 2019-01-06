@@ -1,12 +1,12 @@
 # Project-Presidents-Inauguration-Tool
 
-F.Y.I I have no clue how Github does merges, so if you made a branch of this and/or push or pull, I might break everything, sorry.
+Jefferson Engine Research Discord: https://discord.gg/tzF3YFu
 
-This is a WIP Editor for the Van Buren Tech Demo, part of a project called Project Presidents, this tool is written in C, which may switch to C++ in the future. This program's Development Environment is currentyl Dev-C++ as it is very lightweight, this may change if required but not likely. Future versions may use SDL if I can put figure out why including libraries in a project causes me issues.
+Foreword: I push and pull directly to master, so I will break things if you wish to contribute, sorry, it's a habit I will try to break.
 
-As I am currently learning C there may be and will be brute-force style coding issues, outdated methods, and some things may be flat out wrong. I will try to fix and edit these mistakes as I become aware of them. Also, anyone is free to take this code and modify it to their hearts content, making a completely new program or an entirely better one.
+This is a WIP Editor for the Van Buren Tech Demo, part of a project called Project Presidents, this tool is written in C, which may very likely switch to C++ in the future. This program's Development Environment is currently Code::Blocks 16.01 running on Ubuntu which means Linux binaries are possible but not priority. Future versions may use SDL when I gain proper understanding of it.
 
-Regards, RedneckHax0r
+As I am currently learning C there very may will be brute-force style coding issues, outdated standards, and some things may be flat out wrong. I will try to fix and edit these mistakes as I become aware of them. Also, anyone is free to take this code and modify it to their hearts content, making a completely new program or an entirely better one.
 
 Warning:
 
@@ -15,3 +15,5 @@ This program has broken .CRT files on me before, not all .CRT files are structur
 Compiling:
 
 Compiling this editor is easy, simply download a zip of this repo, then compile the PPIT.C using any C compiler, uncomment whatever code you wish to use as most actual editing is commented out until it is confirmed working in my eyes, this program relies on no 3rd party libraries as of yet.
+
+Regards, RedneckHax0r
