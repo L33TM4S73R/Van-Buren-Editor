@@ -9,21 +9,13 @@
 // FINALLY GET THE PROGRAM TO READ CRT DEFINITIONS FROM THE FILE YOU ARE EDITING,
 // WhiteSnoop helped you with this, you figured it out, but it won't work sometimes.
 
-// Also remember to convert things from the various test.C files to
-// make certain you actually progress with things, also learn how github
-// does branches and stuff.
+// Convert things from the various test.C files.
 
-// Don't forget to actually address the ITM and MAP files work you were doing,
-// it's been sitting on the back burner a while. You got a project to maintain
+// Address ITM and MAP Files
 
-// Make uploads to Github within 30 days or you'll never get this done, also
-// find a better way to make notes in code, this prolly clutters up the compiler.
+// Make uploads to Github within 30 days or you'll never get this done.
 
 // Learn the difference between a long int an int and a char, these compiler warnings are annoying.
-
-// Go to college?.......pff, good one.
-
-// Hope someone actually reads this and gets a kick out of it, if not, well my jokes suck as bad as my code :D
 
 // C Standard Libraries
 #include <stdio.h>
@@ -38,12 +30,13 @@
 	char ch, InputFileName[256]/*, OutputFileName[256]*/; // The name of the files to input and output
 /*	char CRTRaceInputString[3], CRTGenderInputScan[1], body_input[3]*/; // The values to be changed
 //  int CRTGenderInputScan;
+//	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
 	FILE* InputFile/*, *OutputFile*/; // The files to be input and output
 /*
 struct CRT { // CRT File: For NPCs, Creatures, and PC
 	int IsNPC;
 	int IsPC;
-	int Name;
+	char Name;
 	int Race;
 	int Gender;
 	int Body;
@@ -53,7 +46,7 @@ struct ITM { // ITM file: WEA, ITM, ??CHM??
 	int AMO;
 	int WEA;
 	int CHM;
-	int Name;
+	char Name;
 	int Icon;
 	int Texture;
 	int Model;
@@ -153,7 +146,7 @@ void HexView( )
 	printf( "Hex View Finished!\n" );
 }
 
-void Disclaimer()
+void PPITDisclaimer()
 {
 	printf( "This program is still in development.\n" );
 	printf( "Many features don't work or are highly experimental.\n" );
@@ -203,6 +196,8 @@ void CRTEditMenu()
 	}
 }
 
+//#include "CRTEdit.H"
+
 void CRTEdit( )
 {
 	perror( "CRT Edit called.\n" );
@@ -223,6 +218,7 @@ void CRTEdit( )
 
 	CRTEditMenu( );
 }
+
 void RLEEditMenu( )
 {
 //	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension );
@@ -290,7 +286,7 @@ int main( void )
 	do
 	{
 		int StartMenuInput;
-		Disclaimer( );
+		PPITDisclaimer( );
 //		StartMenu( );
 		printf( "Inauguration Tool Start Menu\n" );
 		printf( "1. Load a Human CRT to Edit\n" );

@@ -1,13 +1,23 @@
+# Executables
 *.exe
 *.EXE
+
+# Object files
+*.o
+
+# Libraries
 *.dll
 *.DLL
-*.CRT
-*.log
+
+# Uncompiled Tests
+
 PPIT_EDIT_TEST.C
 PPIT_STRING_TEST.C
 PPIT_DEC_TO_HEX.C
+PPIT_CLASS_TEST.C
+PPIT_SEARCH_TEST.C
 SetGender.C
 SetGender.H
-PPIT
-PPIT.o
+
+#Folders
+build/
