@@ -1,4 +1,6 @@
 // Project Presidents - Inauguration Tool Extension Test written in C
+// Test: To check if a "file" is a valid F3 Format, if not, show prompt
+// Future purpose: To check if a file is a valid F3 Format, if not, don't load file.
 
 // C Standard Libraries
 #include <stdio.h>
