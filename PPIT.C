@@ -1,17 +1,17 @@
 // Project Presidents - Inauguration Tool CRT,ITM,&RLE Test written in C
 
-// DEVELOPER!! OVER HERE!!!!
+// DEVELOPER/DEVELOPERS!! OVER HERE!!!!
 // Notes to self:
 
 // Remember to actually do the "Find a way to translate to perror" thing
-// log generation should be a priority to make sure y'know why things get borked.
+// log generation should be a priority to understand why things get broke, especially when we switch to SDL.
 
 // FINALLY GET THE PROGRAM TO READ CRT DEFINITIONS FROM THE FILE YOU ARE EDITING,
-// WhiteSnoop helped you with this, you figured it out, but it won't work sometimes.
+// WhiteSnoop helped You/Redneck with this, but it won't work sometimes.
 
 // Convert things from the various test.C files.
 
-// Address ITM and MAP Files
+// Address ITM and MAP Files - 25%
 
 // Make uploads to Github within 30 days or you'll never get this done.
 
@@ -27,10 +27,16 @@
 // Project President Libraries
 
 	int Restart, FileType;
-	char ch, InputFileName[256]/*, OutputFileName[256]*/; // The name of the files to input and output
-/*	char CRTRaceInputString[3], CRTGenderInputScan[1], body_input[3]*/; // The values to be changed
-    int CRTGenderInputScan;
+	char ch;
+// Stored Input/Output File Names
+    char InputFileName[256]/*, OutputFileName[256]*/;
+// Stored Input Scan Values
+//	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
 //	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
+    int CRTGenderInputScan[1];
+    char CRTBodyInputScan[3];
+    char CRTRaceInputScan[3];
+    char EditMenuExtension;
 	FILE* InputFile/*, *OutputFile*/; // The files to be input and output
 /*
 struct CRT // CRT File: For NPCs, Creatures, and PC
@@ -108,7 +114,7 @@ void CRTEditMenu()
 	printf( "3. *DISABLED* Edit Body\n" );
 	printf( "4. Hex View\n" );
 	printf( "5. Exit\n" );
-	scanf( "%d", &CRTEditMenuInput );
+	scanf( " %d", &CRTEditMenuInput );
 	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
 	switch ( CRTEditMenuInput )
 	{
@@ -153,11 +159,11 @@ void ITMEditMenu( )
 {
 	int ITMEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - ITM\n" );
-//	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension ); // Find a way to translate to perror
+//	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension );
 	printf( "NOTE: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
 	printf( "1. Hex View\n" );
 	printf( "2. Exit\n" );
-	scanf( "%d", &ITMEditMenuInput );
+	scanf( " %d", &ITMEditMenuInput );
 	printf( "Input is %d\n", ITMEditMenuInput ); // Find a way to translate to perror
 	switch ( ITMEditMenuInput )
 	{
@@ -190,7 +196,7 @@ void StartMenu( )
 		printf( "4. Write errors to external log file(this session)\n" );
 		printf( "5. Exit\n" );
 		printf( "Note: Please refer to Technical Info.txt\n" );
-		scanf( "%d", &StartMenuInput );
+		scanf( " %d", &StartMenuInput );
 		printf( "Input is %d\n", StartMenuInput ); // Find a way to translate to perror
 		switch ( StartMenuInput )
 		{
@@ -226,7 +232,7 @@ void StartMenu( )
 
     		printf( "Restart?(y/n): \n" );
 			char RestartPrompt ='y';
-    		scanf( "%c", &RestartPrompt );
+    		scanf( " %c", &RestartPrompt );
 
     		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
                 Restart = 1;

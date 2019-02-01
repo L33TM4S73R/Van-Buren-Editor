@@ -9,6 +9,9 @@
 *.dll
 *.DLL
 
+# Logs
+*.log
+
 # Uncompiled Tests
 test/PPIT_CLASS_TEST.C
 test/PPIT_SEARCH_TEST.C

@@ -4,7 +4,7 @@ void CRTEdit( )
 //	printf( "%s Edit called.\n", EditMenuExtension ); // Find a way to translate to perror
 	fflush( stdin );
 	printf( "Enter the name of the .CRT file you wish to modify.\n" );
-	fgets( InputFileName, sizeof( InputFileName ), stdin ); // Input File name to be imported
+	fgets( InputFileName, sizeof( InputFileName ), stdin ); // Wait for keyboard input, Input File name to be imported.
 	InputFileName[strlen( InputFileName )-1] = 0x00; // string length for HexView
 
 	printf( "Reading Input File...\n" );
