@@ -10,7 +10,7 @@ Description
 ----------------
 This is a WIP Editor for the Van Buren Tech Demo, part of a project called Project Presidents, this tool is written in C, which may very likely switch to C++ in the future. This program's Development Environment is currently Code::Blocks 16.01 running on Ubuntu. Future versions will use SDL when I gain proper understanding of it.
 
-As of right now all it is is a glorified body editor, and it can't even do that right, will hopefully do some SPECIAL editing here soon.
+As of right now all it is is a glorified body editor, and it can't even do that right, will hopefully do some SPECIAL editing here soon, I also can't seem to get the program to wait for user input in certain situations.
 
 As I am currently learning C there very well may be brute-force style coding issues, outdated standards, and some things may be flat out wrong. I will try to fix and edit these mistakes as I become aware of them. Also, anyone is free to take this code and modify it to their hearts content, making a completely new program or an entirely better one.
 
