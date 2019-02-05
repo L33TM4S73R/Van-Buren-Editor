@@ -1,0 +1,30 @@
+/*
+struct CRT // CRT File: For NPCs, Creatures, and PC
+{
+	int IsNPC;
+	int IsPC;
+	char Name[80];
+	int Race;
+	int Gender;
+	int Body;
+};
+
+struct ITM // ITM file: WEA, ITM, ??CHM??
+{
+	int AMO;
+	int WEA;
+	int CHM;
+	char Name[80];
+	char Icon[80];
+	char Texture[80];
+	char Model[80];
+};
+
+struct RLE // Pip-boy mini-map file
+{
+	int HEAD;
+	int LGTD;
+	int INFO;
+	int LGTR;
+};
+*/

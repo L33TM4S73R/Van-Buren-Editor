@@ -33,41 +33,12 @@
 // Stored Input Scan Values
 //	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
 //	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
-    int CRTGenderInputScan[1];
-    char CRTBodyInputScan[3];
+    char CRTGenderInput[1];
+    char CRTBodyInput[3];
     char CRTRaceInputScan[3];
     char EditMenuExtension;
 	FILE* InputFile/*, *OutputFile*/; // The files to be input and output
-/*
-struct CRT // CRT File: For NPCs, Creatures, and PC
-{
-	int IsNPC;
-	int IsPC;
-	char Name[80];
-	int Race;
-	int Gender;
-	int Body;
-};
 
-struct ITM // ITM file: WEA, ITM, ??CHM??
-{
-	int AMO;
-	int WEA;
-	int CHM;
-	char Name[80];
-	char Icon[80];
-	char Texture[80];
-	char Model[80];
-};
-
-struct RLE // Pip-boy mini-map file
-{
-	int HEAD;
-	int LGTD;
-	int INFO;
-	int LGTR;
-};
-*/
 #include "SetRace.H"
 #include "SetGender.H"
 #include "SetBody.H"
@@ -116,6 +87,7 @@ void CRTEditMenu()
 	printf( "5. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
+	getchar();
 	switch ( CRTEditMenuInput )
 	{
 		case 1:
@@ -165,6 +137,7 @@ void ITMEditMenu( )
 	printf( "2. Exit\n" );
 	scanf( " %d", &ITMEditMenuInput );
 	printf( "Input is %d\n", ITMEditMenuInput ); // Find a way to translate to perror
+	getchar();
 	switch ( ITMEditMenuInput )
 	{
 		case 1:
@@ -191,13 +164,14 @@ void StartMenu( )
         PPITDisclaimer( );
 		printf( "Inauguration Tool Start Menu\n" );
 		printf( "1. Load a Human CRT to Edit\n" );
-		printf( "2. *DISABLED AGAIN!!* Load an ITM to Edit\n" );
-		printf( "3. *DISABLED* Load a RLE to Edit\n" );
+//		printf( "2. *DISABLED AGAIN!!* Load an ITM to Edit\n" );
+//		printf( "3. *DISABLED* Load a RLE to Edit\n" );
 		printf( "4. Write errors to external log file(this session)\n" );
 		printf( "5. Exit\n" );
 		printf( "Note: Please refer to Technical Info.txt\n" );
 		scanf( " %d", &StartMenuInput );
 		printf( "Input is %d\n", StartMenuInput ); // Find a way to translate to perror
+		getchar();
 		switch ( StartMenuInput )
 		{
 			case 1:
@@ -233,6 +207,7 @@ void StartMenu( )
     		printf( "Restart?(y/n): \n" );
 			char RestartPrompt ='y';
     		scanf( " %c", &RestartPrompt );
+    		getchar();
 
     		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
                 Restart = 1;

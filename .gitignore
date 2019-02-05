@@ -1,8 +1,6 @@
-# Executables
+# Compiled Files
 *.exe
-*.EXE
-
-# Object files
+PPIT
 *.o
 
 # Libraries
@@ -15,10 +13,7 @@
 # Uncompiled Tests
 test/PPIT_CLASS_TEST.C
 test/PPIT_SEARCH_TEST.C
-test/PPIT_STRING_TEST.C
-test/PPIT_EXTENSION_TEST
+test/PPIT_EDIT_TEST.C
 
 #Folders
 build/
-PPIT
-test/PPIT_EDIT_TEST.C
