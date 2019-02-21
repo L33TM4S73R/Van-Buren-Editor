@@ -3,7 +3,8 @@
 // DEVELOPER/DEVELOPERS!! OVER HERE!!!!
 // Notes to self:
 
-// Remember to actually do the "Find a way to translate to perror" thing
+// Code standard needs to become a thing, and I need to document things better.
+
 // log generation should be a priority to understand why things get broke, especially when we switch to SDL.
 
 // FINALLY GET THE PROGRAM TO READ CRT DEFINITIONS FROM THE FILE YOU ARE EDITING,
@@ -14,8 +15,6 @@
 // Address ITM and MAP Files - 25%
 
 // Make uploads to Github within 30 days or you'll never get this done.
-
-// Learn the difference between a long int an int and a char, these compiler warnings are annoying.
 
 // C Standard Libraries
 #include <stdio.h>
@@ -34,10 +33,10 @@
 //	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
 //	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
     char CRTGenderInput[1];
-    char CRTBodyInput[3];
+//    char CRTBodyInput[3];
     char CRTRaceInputScan[3];
     char EditMenuExtension;
-	FILE* InputFile/*, *OutputFile*/; // The files to be input and output
+	FILE *InputFile/*, *OutputFile*/; // The files to be input and output
 
 #include "SetRace.H"
 #include "SetGender.H"
@@ -79,14 +78,20 @@ void CRTEditMenu()
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 //	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension );
-	printf( "NOTE: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
+	printf( "NOTES: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
+	printf( "-----------------------------\n" );
 	printf( "1. Edit Race\n" );
-	printf( "2. *DISABLED* Edit Gender\n" );
-	printf( "3. *DISABLED* Edit Body\n" );
+	printf( "2. *WIP* Edit Gender\n" );
+	printf( "3. *WIP* Edit Body\n" );
+    printf( "-----------------------------\n" );
+//	printf( "4. *UNAVAILABLE* Edit Strength\n" );
+//	printf( "5. *UNAVAILABLE* Edit Perception\n" );
+//	printf( "6. *UNAVAILABLE* Edit Endurance\n" );
+//	printf( "7. *UNAVAILABLE* Edit Charisma\n" );
 	printf( "4. Hex View\n" );
 	printf( "5. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
-	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
+//	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
 	getchar();
 	switch ( CRTEditMenuInput )
 	{
@@ -133,11 +138,13 @@ void ITMEditMenu( )
 	printf( "Inauguration Tool Editing Menu - ITM\n" );
 //	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension );
 	printf( "NOTE: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
+    printf( "-----------------------------\n" );
 	printf( "1. Hex View\n" );
+    printf( "-----------------------------\n" );
 	printf( "2. Exit\n" );
 	scanf( " %d", &ITMEditMenuInput );
-	printf( "Input is %d\n", ITMEditMenuInput ); // Find a way to translate to perror
-	getchar();
+//	printf( "Input is %d\n", ITMEditMenuInput ); // Find a way to translate to perror
+	getchar( );
 	switch ( ITMEditMenuInput )
 	{
 		case 1:
@@ -162,30 +169,33 @@ void StartMenu( )
 	{
 	    int StartMenuInput;
         PPITDisclaimer( );
+    	printf( "-----------------------------\n" );
 		printf( "Inauguration Tool Start Menu\n" );
+		printf( "NOTE: Please refer to Technical Info.txt\n" );
+    	printf( "-----------------------------\n" );
 		printf( "1. Load a Human CRT to Edit\n" );
-//		printf( "2. *DISABLED AGAIN!!* Load an ITM to Edit\n" );
+		printf( "2. *WIP* Load an ITM to Edit\n" );
 //		printf( "3. *DISABLED* Load a RLE to Edit\n" );
+        printf( "-----------------------------\n" );
 		printf( "4. Write errors to external log file(this session)\n" );
 		printf( "5. Exit\n" );
-		printf( "Note: Please refer to Technical Info.txt\n" );
 		scanf( " %d", &StartMenuInput );
-		printf( "Input is %d\n", StartMenuInput ); // Find a way to translate to perror
+//		printf( "Input is %d\n", StartMenuInput ); // Find a way to translate to perror
 		getchar();
 		switch ( StartMenuInput )
 		{
 			case 1:
-//psuedo               EditMenuExtension == "CRT"
+                *"CRT" == EditMenuExtension;
 				CRTEdit( );
 				break;
 			case 2:
-//psuedo                EditMenuExtension == "ITM"
+                *"ITM" == EditMenuExtension;
 //				ITMEdit( );
 				perror( "Disabled, Quitting!\n" );
 				exit( EXIT_SUCCESS );
 				break;
 			case 3:
-//psuedo                EditMenuExtension == "RLE"
+                *"RLE"== EditMenuExtension;
 //				RLEEdit( );
 				perror( "Disabled, Quitting!\n" );
 				exit( EXIT_SUCCESS );
@@ -203,19 +213,19 @@ void StartMenu( )
 				exit( EXIT_FAILURE );
 				break;
 		}
-
-    		printf( "Restart?(y/n): \n" );
+    		printf( "Restart?(Y/N): \n" );
 			char RestartPrompt ='y';
     		scanf( " %c", &RestartPrompt );
     		getchar();
 
     		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
                 Restart = 1;
-
-    } while ( !Restart );
-		fclose( InputFile );
+    }
+    while( !Restart );
+		fclose( InputFile ); //Close any open files if they are still open
 //		fclose( OutputFile );
 		printf( "Thank you for using this program.\n" );
+		printf( "Please report any suggestions or bugs to the Discord.\n");
 		exit ( EXIT_SUCCESS );
 
 }

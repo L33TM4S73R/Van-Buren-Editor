@@ -9,8 +9,11 @@ void CRTEdit( )
     {
         InputFileName[strlen( InputFileName )-1] = 0x00; // string length for HexView
         printf( "Reading Input File...\n" );
-        InputFile = fopen( InputFileName,"r+" ); // read+write binary mode
-
+        if ( (InputFile = fopen( InputFileName, "r+" ) ) == NULL ) //read+write binary mode
+            {
+                perror( "Error! File not found, Quitting!\n" );
+                exit( EXIT_FAILURE );
+            }
         CRTEditMenu( );
     }
     else
@@ -18,4 +21,6 @@ void CRTEdit( )
 		perror( "Error while reading the file, Quitting!\n" );
 		exit( EXIT_FAILURE );
 	}
+
+
 }

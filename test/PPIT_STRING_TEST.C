@@ -14,20 +14,21 @@ int main( )
 	int CRTBodyValueLocation;
 
 	printf( "Enter a string: " );
-	if( fgets ( InputFileName, sizeof( InputFileName ), stdin )!=NULL )
+	if( fgets( InputFileName, sizeof( InputFileName ), stdin )!=NULL )
 	{
 
 //        printf( "Enter a Body Value to find the position of: " );
 //        fgets ( BodyValue, sizeof( BodyValue ), stdin );
 
         printf( "Position in the file: " );
-        for ( CRTBodyValueLocation = 0; CRTBodyValueLocation < strlen( InputFileName ); CRTBodyValueLocation++ )
+        while( ( ch = fgetc( InputFileName ) ) != EOF )
+        for( CRTBodyValueLocation = 0; CRTBodyValueLocation < strlen( InputFileName ); CRTBodyValueLocation++ )
         {
-            if ( *"F" == InputFileName[CRTBodyValueLocation] )
+            if( *"F" == InputFileName[CRTBodyValueLocation] )
             {
                 printf( "%d  ", CRTBodyValueLocation + 1 );
             }
-            else if ( *"M" == InputFileName[CRTBodyValueLocation] )
+            else if( *"M" == InputFileName[CRTBodyValueLocation] )
             {
                 printf( "%d  ", CRTBodyValueLocation + 1 );
             }

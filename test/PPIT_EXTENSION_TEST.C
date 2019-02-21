@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *F3DataFormat( const char *filename )
+const char *F3DataFormat( const char *InputFileName )
 {
-    const char *ext = strrchr( filename, '.' );
-    if( !ext || ext == filename ) return "Not Valid F3 Format";
+    const char *ext = strrchr( InputFileName, '.' );
+    if( !ext || ext == InputFileName ) return "Not Valid F3 Format";
     return ext + 1;
 }
 
@@ -19,10 +19,25 @@ const char *F3DataFormatCritterCRT( )
 
 }
 
+#include <stdio.h>
+#include <string.h>
+
 int main( )
 {
-    printf( "%s\n", F3DataFormat( "PCFemale.CRT" ) );
-    printf( "%s\n", F3DataFormat( "Communist" ) );
+   char InputFileName[] = "PCFemale.CRT";
+   char *ext;
 
-    return 0;
+   ext = strrchr( InputFileName, '.' );
+
+   printf( "'%s'", ext );
+
+   return( 0 );
 }
+
+//int main( )
+//{
+//    printf( "%s\n", F3DataFormat( "PCFemale.CRT" ) );
+//    printf( "%s\n", F3DataFormat( "Communist" ) );
+//
+//    return 0;
+//}
