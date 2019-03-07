@@ -7,11 +7,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+	int CRTPhysicalValueLocation;
+	int CRTPhysicalValue;
+    char InputFileName[256], BodyValue[4];
+
+void JumpToPhysicalLocation( )
+{
+    CRTPhysicalValueLocation == 0;
+    for( CRTPhysicalValueLocation = 0; CRTPhysicalValueLocation < strlen( InputFileName ); CRTPhysicalValueLocation++ )
+    {
+        if( *"Hum" == InputFileName[CRTPhysicalValueLocation] )
+        {
+            printf( "%d  ", CRTPhysicalValueLocation + 1 );
+            CRTPhysicalValue == CRTPhysicalValueLocation + 1;
+        }
+    }
+}
+
 int main( )
 {
-
-	char InputFileName[256], BodyValue[4];
-	int CRTBodyValueLocation;
 
 	printf( "Enter a string: " );
 	if( fgets( InputFileName, sizeof( InputFileName ), stdin )!=NULL )
@@ -21,18 +36,8 @@ int main( )
 //        fgets ( BodyValue, sizeof( BodyValue ), stdin );
 
         printf( "Position in the file: " );
-        while( ( ch = fgetc( InputFileName ) ) != EOF )
-        for( CRTBodyValueLocation = 0; CRTBodyValueLocation < strlen( InputFileName ); CRTBodyValueLocation++ )
-        {
-            if( *"F" == InputFileName[CRTBodyValueLocation] )
-            {
-                printf( "%d  ", CRTBodyValueLocation + 1 );
-            }
-            else if( *"M" == InputFileName[CRTBodyValueLocation] )
-            {
-                printf( "%d  ", CRTBodyValueLocation + 1 );
-            }
-        }
+        JumpToPhysicalLocation( );
+//        while( ( ch = fgetc( InputFileName ) ) != EOF )
     }
 	else
 	{

@@ -16,6 +16,8 @@
 
 // Make uploads to Github within 30 days or you'll never get this done.
 
+#include "Libraries.H"
+/*
 // C Standard Libraries
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,7 +26,7 @@
 // 3rd Party Libraries
 
 // Project President Libraries
-
+*/
 	int Restart, FileType;
 	char ch;
 // Stored Input/Output File Names
@@ -33,7 +35,6 @@
 //	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
 //	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
     char CRTGenderInput[1];
-//    char CRTBodyInput[3];
     char CRTRaceInputScan[3];
     char EditMenuExtension;
 	FILE *InputFile/*, *OutputFile*/; // The files to be input and output
@@ -67,7 +68,7 @@ void HexView( )
 
 void PPITDisclaimer()
 {
-	printf( "This program is still in development.\n" );
+    printf( "This program is still in development.\n" );
 	printf( "Many features don't work or are highly experimental.\n" );
 	printf( "Right now, just consider this program a proof-of-concept.\n" );
 	printf( "All things are liable to change, thank you.\n" );
@@ -92,11 +93,11 @@ void CRTEditMenu()
 	printf( "5. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 //	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
-	getchar();
+	getchar( );
 	switch ( CRTEditMenuInput )
 	{
 		case 1:
-			SetRace();
+			SetRace( );
 			break;
 		case 2:
 //			SetGender();
@@ -177,8 +178,10 @@ void StartMenu( )
 		printf( "2. *WIP* Load an ITM to Edit\n" );
 //		printf( "3. *DISABLED* Load a RLE to Edit\n" );
         printf( "-----------------------------\n" );
-		printf( "4. Write errors to external log file(this session)\n" );
-		printf( "5. Exit\n" );
+		printf( "4. Write errors to external log file(for this session)\n" );
+		printf( "5. Toggle file export(for this session)\n" );
+        printf( "-----------------------------\n" );
+		printf( "6. Exit\n" );
 		scanf( " %d", &StartMenuInput );
 //		printf( "Input is %d\n", StartMenuInput ); // Find a way to translate to perror
 		getchar();
@@ -190,9 +193,7 @@ void StartMenu( )
 				break;
 			case 2:
                 *"ITM" == EditMenuExtension;
-//				ITMEdit( );
-				perror( "Disabled, Quitting!\n" );
-				exit( EXIT_SUCCESS );
+				ITMEdit( );
 				break;
 			case 3:
                 *"RLE"== EditMenuExtension;
@@ -202,9 +203,12 @@ void StartMenu( )
 				break;
 			case 4:
 				freopen( "error.log", "w", stderr );
-				perror( "Log file created.");
+				perror( "Log file created.\n");
 				break;
 			case 5:
+                printf( "Not Finished Yet.\n" );
+                break;
+            case 6:
 				printf( "Thank you for using this program.\n" );
 				break;
 				exit( EXIT_SUCCESS );
@@ -253,7 +257,7 @@ int main( void )
 
 //		printf( "Backup created successfully.\n" );
 
-//		fclose(InputFile);
+//		fclose( InputFile );
 */
 
 }

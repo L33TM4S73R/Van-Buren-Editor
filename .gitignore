@@ -18,3 +18,5 @@ test/PPIT_EDIT_TEST.C
 #Folders
 build/
 test/PPIT_EXTENSION_TEST
+test/PPIT_CLEANUP_TEST
+test/MAIN.C
