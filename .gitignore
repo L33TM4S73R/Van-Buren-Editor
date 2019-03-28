@@ -16,7 +16,12 @@ test/PPIT_SEARCH_TEST.C
 test/PPIT_EDIT_TEST.C
 
 #Folders
-build/
+bin/
 test/PPIT_EXTENSION_TEST
 test/PPIT_CLEANUP_TEST
 test/MAIN.C
+test/conversiontest.c
+test/conversiontest
+test/PPIT_EDIT_TEST
+test/PPIT_SEARCH_TEST
+test/PPIT_STRING_TEST

@@ -2,7 +2,7 @@
 #define _LIBRARIES_H_
 
 // C Standard Libraries
-#include <stdio.h>
+#include <stdio.h> // Input/Output header file
 #include <stdlib.h>
 #include <string.h>
 

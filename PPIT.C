@@ -1,37 +1,24 @@
 // Project Presidents - Inauguration Tool CRT,ITM,&RLE Test written in C
 
-// DEVELOPER/DEVELOPERS!! OVER HERE!!!!
-// Notes to self:
+//#include "Libraries.H"
 
-// Code standard needs to become a thing, and I need to document things better.
-
-// log generation should be a priority to understand why things get broke, especially when we switch to SDL.
-
-// FINALLY GET THE PROGRAM TO READ CRT DEFINITIONS FROM THE FILE YOU ARE EDITING,
-// WhiteSnoop helped You/Redneck with this, but it won't work sometimes.
-
-// Convert things from the various test.C files.
-
-// Address ITM and MAP Files - 25%
-
-// Make uploads to Github within 30 days or you'll never get this done.
-
-#include "Libraries.H"
-/*
 // C Standard Libraries
-#include <stdio.h>
+#include <stdio.h> // Input/Output header file
 #include <stdlib.h>
 #include <string.h>
 
 // 3rd Party Libraries
 
-// Project President Libraries
-*/
-	int Restart, FileType;
+//  Project President Libraries
+
+//  Variables
+
+	int Restart;
+	int FileType;
 	char ch;
-// Stored Input/Output File Names
+//      Stored Input/Output File Names
     char InputFileName[256]/*, OutputFileName[256]*/;
-// Stored Input Scan Values
+//      Stored Input Scan Values
 //	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
 //	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
     char CRTGenderInput[1];
@@ -51,7 +38,19 @@
 //#include "SetAgility.H"
 //#include "SetLuck.H"
 
-void HexView( )
+void CleanUp( )
+{
+	printf( "Cleaning up...\n" );
+	fclose( InputFile );
+//	fclose( OutputFile );
+    #ifdef BUILD_LINUX
+	system( "clear" );// Unix/Linux build
+    #else
+	system( "cls" );// Windows build
+	#endif // BUILD_LINUX
+}
+
+void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFFFFF artifacts
 {
 	perror( "Hex View Called.\n" );
 	int i;
@@ -66,20 +65,19 @@ void HexView( )
 	printf( "Hex View Finished!\n" );
 }
 
-void PPITDisclaimer()
+void PPITDisclaimer( ) // Simply just lets the user now this program is highly experimental and is just a preview
 {
-    printf( "This program is still in development.\n" );
+	printf( "This program is still in development.\n" );
 	printf( "Many features don't work or are highly experimental.\n" );
-	printf( "Right now, just consider this program a proof-of-concept.\n" );
+	printf( "Right now, just consider this program a proof-of-concept/rough draft.\n" );
 	printf( "All things are liable to change, thank you.\n" );
 }
 
-void CRTEditMenu()
+void CRTEditMenu( )
 {
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
-//	printf( "Inauguration Tool Editing Menu - %s\n", EditMenuExtension );
-	printf( "NOTES: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
+//	printf( "Inauguration Tool Editing Menu - %s\n", MenuExtension );
 	printf( "-----------------------------\n" );
 	printf( "1. Edit Race\n" );
 	printf( "2. *WIP* Edit Gender\n" );
@@ -89,8 +87,7 @@ void CRTEditMenu()
 //	printf( "5. *UNAVAILABLE* Edit Perception\n" );
 //	printf( "6. *UNAVAILABLE* Edit Endurance\n" );
 //	printf( "7. *UNAVAILABLE* Edit Charisma\n" );
-	printf( "4. Hex View\n" );
-	printf( "5. Exit\n" );
+	printf( "4. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 //	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
 	getchar( );
@@ -100,19 +97,47 @@ void CRTEditMenu()
 			SetRace( );
 			break;
 		case 2:
-//			SetGender();
+//			SetGender( );
 			perror( "Disabled, Quitting!\n " );
 			exit( EXIT_SUCCESS );
 			break;
 		case 3:
-//			SetBody();
+//			SetBody( );
 			perror( "Disabled, Quitting!\n " );
 			exit( EXIT_SUCCESS );
 			break;
 		case 4:
+			printf( "Thank you for using this program.\n" );
+			exit( EXIT_SUCCESS );
+			break;
+		default:
+			perror( "No Valid Input, Quitting!\n " );
+			exit( EXIT_FAILURE );
+			break;
+	}
+}
+
+void CRTInformationMenu( )
+{
+	int CRTInformationMenuInput;
+	printf( "Inauguration Tool Information Menu - CRT\n" );
+//	printf( "Inauguration Tool Information Menu - %s\n", MenuExtension );
+	printf( "NOTES: With Hex View you will get odd FFFFFF artifacts from time to time, I have no clue what these are.\n" );
+	printf( "-----------------------------\n" );
+	printf( "1. Edit CRT File");
+	printf( "2. Hex View\n" );
+	printf( "3. Exit\n" );
+	scanf( " %d", &CRTInformationMenuInput );
+
+	switch ( CRTInformationMenuInput )
+	{
+		case 1:
+			CRTEditMenu( );
+			break;
+		case 2:
 			HexView( );
 			break;
-		case 5:
+		case 3:
 			printf( "Thank you for using this program.\n" );
 			exit( EXIT_SUCCESS );
 			break;
@@ -228,36 +253,45 @@ void StartMenu( )
     while( !Restart );
 		fclose( InputFile ); //Close any open files if they are still open
 //		fclose( OutputFile );
+		CleanUp( );
 		printf( "Thank you for using this program.\n" );
 		printf( "Please report any suggestions or bugs to the Discord.\n");
 		exit ( EXIT_SUCCESS );
 
 }
 
-int main( void )
+void oldcode( )
 {
-    StartMenu( );
 // Start of older code to be restructured
 /*
+
 		printf( "Enter the name of the .CRT file to be exported.\n" );
 //		fgets( OutputFileName, sizeof( OutputFileName ), stdin ); // Input File name to be exported
 
 //		OutputFile = fopen( OutputFileName,"ab+" ); // Open or create file for writing
 //		printf( "Creating backup of file...\n" );
 
+
 //		if( OutputFileName == NULL )
 //		{
 //			fclose( InputFile );
 //			perror( "Error while creating and reading backup.\n" );
+
 //			exit( EXIT_FAILURE );
 //		}
 
 //		while ( ( ch = fgetc( InputFile ) ) != EOF )
 //		fputc( ch, OutputFile );
 
+
 //		printf( "Backup created successfully.\n" );
 
 //		fclose( InputFile );
 */
 
+}
+
+int main( void )
+{
+    StartMenu( );
 }

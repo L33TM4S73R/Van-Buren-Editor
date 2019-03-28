@@ -9,7 +9,7 @@
 
 
 	int CRTPhysicalValueLocation;
-	int CRTPhysicalValue;
+	unsigned int CRTPhysicalValue;
     char InputFileName[256], BodyValue[4];
 
 void JumpToPhysicalLocation( )

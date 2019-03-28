@@ -7,9 +7,9 @@ void SetRace()
 	printf( "Was: %s", CRTRaceInputString ); // Find a way to translate to perror
 	printf( "Enter the desired 7-character race type.\n" );
 	fflush(stdin);
-
-	printf( "Race input string length: %ld\n", sizeof( CRTRaceInputString )  ); // Find a way to translate to perror
-	printf( "Equivalent hexadecimal number of $placeholder$ is: %02X",CRTRaceInputStringLength ); // Find a way to translate to perror
+    printf( "Race Information:");
+	printf( "String length: %ld\n", sizeof( CRTRaceInputString )  ); // Find a way to translate to perror
+	printf( "Equivalent hexadecimal number: %02d",CRTRaceInputStringLength ); // Find a way to translate to perror
 
 	if( fgets (CRTRaceInputString, sizeof(CRTRaceInputString), stdin)!=NULL )
 	{
