@@ -1,7 +1,7 @@
 void CRTEdit( )
 {
-//    char str1[];
-//    char HumanCRTFileCheck[] = "Hum";
+    char string1[3];
+    char HumanCRTFileCheck[] = "Hum";
 
 	perror( "CRT Edit called.\n" );
 //	printf( "%s Edit called.\n", EditMenuExtension ); // Find a way to translate to perror
@@ -17,23 +17,22 @@ void CRTEdit( )
             perror( "Error! File not found, Quitting!\n" );
             exit( EXIT_FAILURE );
         }
-        else
-        {
-            perror( "Error while reading the file, Quitting!\n" );
-            exit( EXIT_FAILURE );
-        }
-// Search File for the occurrence of Hum
-//      if( strstr( str1, HumanCRTFileCheck ) )
-//      {
-//          printf( "Is valid Human .CRT file" );
-//          CRTInformationMenu( );
-//      }
+	else// if( strstr( string1, HumanCRTFileCheck ) ) // Search File for the occurrence of Hum
+	{
+//		printf( "Is valid Human .CRT file" );
+		CRTInformationMenu( );
+	}
 //      else
 //      {
-//          printf( "Not a valid Human .CRT file" );
-//          return 0;
-//      }
-        CRTInformationMenu( );
+//		printf( "Not a valid Human .CRT file" );
+//		return 0;
+//	}
+//	else
+//	{
+//		perror( "Error while reading the file, Quitting!\n" );
+//		exit( EXIT_FAILURE );
+//	}
+//	CRTInformationMenu( );
 
     }
 }

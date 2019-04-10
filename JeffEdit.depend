@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1553801063 source:/home/redneck/Documents/GitHub/JeffEdit/PPIT.C
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"SetRace.H"
+	"SetGender.H"
+	"SetBody.H"
+	"SetStrength.H"
+	"SetPerception.H"
+	"SetEndurance.H"
+	"CRTEdit.H"
+	"RLEEdit.H"
+	"ITMEdit.H"
+
+1553155138 /home/redneck/Documents/GitHub/JeffEdit/SetRace.H
+
+1553156286 /home/redneck/Documents/GitHub/JeffEdit/SetGender.H
+
+1550422736 /home/redneck/Documents/GitHub/JeffEdit/SetBody.H
+
+1548917683 /home/redneck/Documents/GitHub/JeffEdit/SetStrength.H
+
+1548917681 /home/redneck/Documents/GitHub/JeffEdit/SetPerception.H
+
+1548917713 /home/redneck/Documents/GitHub/JeffEdit/SetEndurance.H
+
+1553159017 /home/redneck/Documents/GitHub/JeffEdit/CRTEdit.H
+
+1548900893 /home/redneck/Documents/GitHub/JeffEdit/RLEEdit.H
+
+1548900481 /home/redneck/Documents/GitHub/JeffEdit/ITMEdit.H
+

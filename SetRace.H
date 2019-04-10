@@ -1,7 +1,7 @@
 void SetRace()
 {
 	char CRTRaceInputString[7];
-	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
+	int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
 	perror( "Set Race Called.\n" );
 
 	printf( "Was: %s", CRTRaceInputString ); // Find a way to translate to perror

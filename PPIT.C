@@ -1,31 +1,6 @@
 // Project Presidents - Inauguration Tool CRT,ITM,&RLE Test written in C
 
-//#include "Libraries.H"
-
-// C Standard Libraries
-#include <stdio.h> // Input/Output header file
-#include <stdlib.h>
-#include <string.h>
-
-// 3rd Party Libraries
-
-//  Project President Libraries
-
-//  Variables
-
-	int Restart;
-	int FileType;
-	char ch;
-//      Stored Input/Output File Names
-    char InputFileName[256]/*, OutputFileName[256]*/;
-//      Stored Input Scan Values
-//	long int CRTBodyInputStringLength = sizeof( CRTBodyInputString );
-//	long int CRTRaceInputStringLength = sizeof( CRTRaceInputString );
-    char CRTGenderInput[1];
-    char CRTRaceInputScan[3];
-    char EditMenuExtension;
-	FILE *InputFile/*, *OutputFile*/; // The files to be input and output
-
+#include "Global.H"
 #include "SetRace.H"
 #include "SetGender.H"
 #include "SetBody.H"
@@ -43,9 +18,9 @@ void CleanUp( )
 	printf( "Cleaning up...\n" );
 	fclose( InputFile );
 //	fclose( OutputFile );
-    #ifdef BUILD_LINUX
+	#ifdef BUILD_LINUX
 	system( "clear" );// Unix/Linux build
-    #else
+	#else
 	system( "cls" );// Windows build
 	#endif // BUILD_LINUX
 }
@@ -67,10 +42,9 @@ void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFF
 
 void PPITDisclaimer( ) // Simply just lets the user now this program is highly experimental and is just a preview
 {
-	printf( "This program is still in development.\n" );
-	printf( "Many features don't work or are highly experimental.\n" );
+	printf( "Many features in this program don't work or are highly experimental.\n" );
 	printf( "Right now, just consider this program a proof-of-concept/rough draft.\n" );
-	printf( "All things are liable to change, thank you.\n" );
+	printf( "All things are liable to change, thank you!\n" );
 }
 
 void CRTEditMenu( )
@@ -82,11 +56,11 @@ void CRTEditMenu( )
 	printf( "1. Edit Race\n" );
 	printf( "2. *WIP* Edit Gender\n" );
 	printf( "3. *WIP* Edit Body\n" );
-    printf( "-----------------------------\n" );
 //	printf( "4. *UNAVAILABLE* Edit Strength\n" );
 //	printf( "5. *UNAVAILABLE* Edit Perception\n" );
 //	printf( "6. *UNAVAILABLE* Edit Endurance\n" );
 //	printf( "7. *UNAVAILABLE* Edit Charisma\n" );
+	printf( "-----------------------------\n" );
 	printf( "4. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 //	printf( "Input is %d\n", CRTEditMenuInput ); // Find a way to translate to perror
@@ -194,6 +168,7 @@ void StartMenu( )
 	do
 	{
 	    int StartMenuInput;
+        printf( "%s version %s\n",TITLE,VERSION );
         PPITDisclaimer( );
     	printf( "-----------------------------\n" );
 		printf( "Inauguration Tool Start Menu\n" );
@@ -228,12 +203,12 @@ void StartMenu( )
 				break;
 			case 4:
 				freopen( "error.log", "w", stderr );
-				perror( "Log file created.\n");
+				printf( "Log file created.\n");
 				break;
 			case 5:
-                printf( "Not Finished Yet.\n" );
-                break;
-            case 6:
+				printf( "Not Finished Yet.\n" );
+				break;
+			case 6:
 				printf( "Thank you for using this program.\n" );
 				break;
 				exit( EXIT_SUCCESS );

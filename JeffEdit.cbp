@@ -34,7 +34,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../PPIT.C">
+		<Unit filename="CRTEdit.H" />
+		<Unit filename="PPIT.C">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
