@@ -11,5 +11,4 @@ PPIT
 *.log
 
 #Folders
-bin/
-obj/
+build/
