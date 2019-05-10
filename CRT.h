@@ -2,35 +2,60 @@ int GetCRTRaceValuePosition( )
 {
 	char *pointer;
 
-	pointer=strstr(FileString,CRTRaceHuman);
-	if( pointer != NULL ) 
+	pointer=strstr( FileString,CRTRaceHuman );
+	if( pointer != NULL && pointer > 0 ) 
 	{
 		CRTRaceValuePosition = pointer - FileString;
+		printf("CRT Race Location: %d\n", CRTRaceValuePosition);
 	}
-
-	printf("CRT Race Location: %d\n", CRTRaceValuePosition);
-
+	else
+	{
+		printf( "File is either corrupt or an invalid .CRT" );
+		exit( EXIT_FAILURE );
+	}
 	return 1;
 }
 
 int SetCRTRaceValue( )
 {
-	GetCRTRaceValuePosition( );
 	printf( "Enter the desired 3-character race type.\n" );
 	fflush(stdin);
-	if( fgets (CRTRaceUserInput, sizeof(CRTRaceUserInput), stdin)!=NULL )
+	if( fgets( CRTRaceUserInput, sizeof( CRTRaceUserInput ), stdin )!=NULL /*&& sizeof( CRTRaceUserInput ) == 3 */)
 	{
-//		printf( "Now: %s", CRTRaceUserInput );
 		printf( "Making Changes...\n" );
 		fseek( InputFile, CRTRaceValuePosition, SEEK_SET );
-//		fseek( InputFile, 20, SEEK_SET );
-		fwrite (CRTRaceUserInput , sizeof(char), sizeof(CRTRaceUserInput), InputFile);
+		fwrite( CRTRaceUserInput , sizeof( char ), sizeof( CRTRaceUserInput ), InputFile );
 		printf( "Finished!\n" );
 	}
 	else
 	{
-			printf( "Race length is to small or large\n" );
-			printf( "Invalid race length\n");
+			printf( "Invalid Race length: Either too small or too large.\n" );
+			exit( EXIT_FAILURE );
+	}
+	return 1;
+}
+
+int GetCRTBodyValuePosition( )
+{
+	CRTBodyValuePosition = CRTRaceValuePosition + 2;
+	printf( "CRT Body Location: %d\n", CRTBodyValuePosition );
+	return 1;
+}
+
+int SetCRTBodyValue( )
+{
+	printf( "Enter the desired 3-character body type.\n" );
+	fflush(stdin);
+	if( fgets( CRTBodyUserInput, sizeof( CRTBodyUserInput ), stdin )!=NULL /*&& sizeof( CRTBodyUserInput ) == 3 */)
+	{
+		printf( "Making Changes...\n" );
+		fseek( InputFile, CRTBodyValuePosition, SEEK_SET );
+		fwrite( CRTBodyUserInput , sizeof( char ), sizeof( CRTBodyUserInput ), InputFile );
+		printf( "Finished!\n" );
+	}
+	else
+	{
+			printf( "Invalid Body length: Either too small or too large.\n" );
 			exit( EXIT_FAILURE );
 	}
 	return 1;
@@ -41,9 +66,13 @@ void CRTEditMenu( )
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
-	printf( "1. *WIP* Edit Race\n" );
+	printf("CRT Race Location: %d, CRT Race value: %s\n", CRTRaceValuePosition, CRTRaceHuman );
+	printf("CRT Body Location: %d\n", CRTBodyValuePosition );
+//	printf("CRT Body Location: %d, CRT Body value: %s\n", CRTRaceValuePosition, CRTBodyStr );
+	printf( "-----------------------------\n" );
+	printf( "1. *WIP-Broken* Edit Race\n" );
 //	printf( "2. *UNAVAILABLE* Edit Gender\n" );
-//	printf( "3. *UNAVAILABLE* Edit Body\n" );
+	printf( "3. *WIP-Broken* Edit Body\n" );
 //	printf( "4. *UNAVAILABLE* Edit Strength\n" );
 //	printf( "5. *UNAVAILABLE* Edit Perception\n" );
 //	printf( "6. *UNAVAILABLE* Edit Endurance\n" );
@@ -62,8 +91,7 @@ void CRTEditMenu( )
 			exit( EXIT_SUCCESS );
 			break;
 		case 3:
-			printf( "Disabled, Quitting!\n " );
-			exit( EXIT_SUCCESS );
+			SetCRTBodyValue( );
 			break;
 		case 4:
 			printf( "Thank you for using this program.\n" );
@@ -76,18 +104,6 @@ void CRTEditMenu( )
 	}
 }
 
-int ReadCRTFile( void )
-{
-	fseek( InputFile, 0, SEEK_END );
-	fsize = ftell( InputFile );
-	fseek( InputFile, 0, SEEK_SET );
-
-	FileString = malloc( fsize + 1 );
-	fread( FileString, 1, fsize, InputFile );
-
-	return 1;
-}
-
 int CRTLoad( void )
 {
 
@@ -98,43 +114,18 @@ int CRTLoad( void )
 		InputFileName[strlen( InputFileName )-1] = 0x00; // string length for HexView
 		printf( "Reading Input File...\n" );
 		OpenInputFile( InputFileName );
-//		if ( (InputFile = fopen( InputFileName, "r+" ) ) == NULL ) //read+write binary mode
-//		{
-//			printf( "Error! File not found, Quitting!\n" );
-//			exit( EXIT_FAILURE );
-//		}
-		ReadCRTFile( );
+		ReadFile( );
 	}
 
 	FileString[fsize] = 0;
 //	printf( "%s", string );
 
+//	HEY_REDNECK_HEY!	Put Position Finder here!
 	GetCRTRaceValuePosition( );
+//	GetCRTGenderValuePosition( );
+	GetCRTBodyValuePosition( );
 
 	CRTEditMenu( );
 
-	return 1;
-}
-
-int CRTExport( )
-{
-	printf( "Export The File?(Y/N): \n" );
-		char ExportPrompt ='n';
-    	scanf( " %c", &ExportPrompt );
-    	getchar();
-
-    	if ( ExportPrompt == 'y'|| ExportPrompt == 'Y' )
-	{
-		printf( "Enter the name of the .CRT file to be exported.\n" );
-		if( fgets ( OutputFileName, sizeof( OutputFileName ), stdin )!=NULL ) // File name to be exported
-		{
-			printf( "Creating backup of file...\n" );
-			CreateOutputFile( OutputFileName );
-			fputs( FileString, OutputFile );
-			printf( "Backup created successfully.\n" );
-			fclose( InputFile );
-			fclose( OutputFile );
-		}
-	}
 	return 1;
 }

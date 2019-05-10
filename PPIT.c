@@ -1,6 +1,7 @@
-// Project Presidents - Inauguration Tool CRT,ITM,&RLE Test written in C
+// Project Presidents - Inauguration Tool CRT, ITM, & RLE Test written in C
 
 #include "Global.h"
+
 #include "FileManagement.h"
 
 //#include "SetGender.H"
@@ -13,16 +14,6 @@
 //#include "SetIntelligence.H"
 //#include "SetAgility.H"
 //#include "SetLuck.H"
-
-void CleanUp( )
-{
-	printf( "Cleaning up...\n" );
-//	#ifdef BUILD_LINUX
-	system( "clear" );// Unix/Linux build
-//	#else
-//	system( "cls" );// Windows build
-//	#endif // BUILD_LINUX
-}
 
 void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFFFFF artifacts
 {
@@ -47,8 +38,8 @@ void PPITDisclaimer( ) // Simply just lets the user know this program is highly 
 }
 
 #include "CRT.h"
-//#include "RLE.h"
 //#include "ITM.h"
+//#include "RLE.h"
 
 void StartMenu( )
 {
@@ -56,6 +47,7 @@ void StartMenu( )
 	{
 		int StartMenuInput;
 		printf( "%s version %s\n",TITLE,VERSION );
+		printf( "-----------------------------\n" );
 		PPITDisclaimer( );
 		printf( "-----------------------------\n" );
 		printf( "Inauguration Tool Start Menu\n" );
@@ -63,9 +55,9 @@ void StartMenu( )
 		printf( "-----------------------------\n" );
 		printf( "Inauguration Tool Test Menu - ITM\n" );
 		printf( "-----------------------------\n" );
-		printf( "1. Load a Human CRT to Edit\n" );
-//		printf( "2. *DISABLED* Load an ITM to Edit\n" );
-//		printf( "3. *DISABLED* Load a RLE to Edit\n" );
+		printf( "1. *WIP* Load a Human CRT(Creature) file\n" );
+//		printf( "2. *DISABLED* Load an ITM(Item) file\n" );
+//		printf( "3. *DISABLED* Load a RLE(Map Definition) file\n" );
         	printf( "-----------------------------\n" );
 		printf( "4. Write errors to external log file(for this session)\n" );
 		printf( "5. Toggle file export(for this session)\n" );
@@ -77,48 +69,48 @@ void StartMenu( )
 		{
 			case 1:
 				CRTLoad( );
-				CRTExport( );
+				FileExport( );
 				break;
 			case 2:
-//				ITMEdit( );
-				printf( "Disabled, Quitting!\n" );
-				exit( EXIT_SUCCESS );
+//				ITMLoad( );
+				FileExport( );
 				break;
 			case 3:
-//				RLEEdit( );
-				printf( "Disabled, Quitting!\n" );
-				exit( EXIT_SUCCESS );
+//				RLELoad( );
+				printf( "Disabled!\n" );
 				break;
 			case 4:
 				freopen( "error.log", "w", stderr );
 				printf( "Log file created.\n");
 				break;
 			case 5:
-				printf( "Not Finished Yet.\n" );
+				printf( "Do you wish to export files for this session?(Y/N): \n" );
+    				scanf( " %c", &FileExportPrompt );
+				getchar( );
+
+				if( FileExportPrompt == 'y'|| FileExportPrompt == 'Y' )
+                			ExportFiles = 1;
 				break;
 			case 6:
-				printf( "Thank you for using this program.\n" );
+				Quit( );
 				break;
-				exit( EXIT_SUCCESS );
 			default:
 				printf( "No Valid Input, Quitting!\n " );
 				exit( EXIT_FAILURE );
 				break;
 		}
-    		printf( "Restart?(Y/N): \n" );
-			char RestartPrompt ='y';
+		char RestartPrompt ='y';
+    		printf( "Do you wish to continue this session?(Y/N): \n" );
     		scanf( " %c", &RestartPrompt );
-    		getchar();
+		getchar( );
 
-    		if ( RestartPrompt == 'n'|| RestartPrompt == 'N' )
-                Restart = 1;
+    		if( RestartPrompt == 'n'|| RestartPrompt == 'N' )
+			Restart = 1;
 	}
 	while( !Restart );
-		CleanUp( );
-		printf( "Thank you for using this program.\n" );
-		printf( "Please report any suggestions or bugs to the Discord.\n");
-		exit ( EXIT_SUCCESS );
+		Quit( );
 }
+
 int main( void )
 {
 	StartMenu( );

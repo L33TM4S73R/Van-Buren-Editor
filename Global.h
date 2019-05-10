@@ -9,11 +9,25 @@
 /* 3rd Party Libraries */
 
 #define TITLE		"Project Presidents - Inauguration Tool"
-#define VERSION		"In-Dev - Rewrite"
+#define VERSION		"In-Dev - Testing"
+
+void Quit( )
+{
+	printf( "Cleaning up...\n" );
+//	#ifdef BUILD_LINUX
+	system( "clear" );// Unix/Linux build
+//	#else
+//	system( "cls" );// Windows build
+//	#endif // BUILD_LINUX
+	printf( "Thank you for using this program.\n" );
+	printf( "Please report any suggestions or bugs to the Discord.\n");
+	exit ( EXIT_SUCCESS );
+}
 
 /* Variables */
 
 int Restart;
+int ExportFiles;
 char ch;
 
 /* Stored Input/Output File Names */
@@ -26,17 +40,18 @@ FILE *InputFile, *OutputFile;
 
 char CRTRaceUserInput[4];
 int CRTRaceValuePosition;
-char CRTRaceHuman[50] = "Hum";
+char CRTRaceHuman[4] = "Hum";
 
 int CRTSexValuePosition;
-char CRTSexM[50] = "M";
-char CRTSexF[50] = "F";
+char CRTSexM[2] = "M";
+char CRTSexF[2] = "F";
 
+char CRTBodyUserInput[4];
 int CRTBodyValuePosition;
-char CRTBodyStr[50] = "Str";
-char CRTBodyFat[50] = "Fat";
-char CRTBodyNor[50] = "Nor";
-char CRTBodyWir[50] = "Wir";
+char CRTBodyStr[4] = "Str";
+char CRTBodyFat[4] = "Fat";
+char CRTBodyNor[4] = "Nor";
+char CRTBodyWir[4] = "Wir";
 
 /* End of CRT File Handling */
 

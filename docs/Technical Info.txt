@@ -1,19 +1,8 @@
-CRT(Creature) File Information:
+File Format Information - Updated WED MAY 10 2019
 
-Use these inputs for the 3-character Race prompt.:
-Hum
+CRT(Creature) 
 
-Use these inputs for the 1-character Gender prompt.:
-F
-M
-
-Use these inputs for the 3-character Body prompt.:
-Fat
-Nor
-Str
-Wir
-
-Description of input parts:
+Simple Description of Human Creature body types:
 
 	Hum = Human
 
@@ -21,13 +10,13 @@ Description of input parts:
 
 	Fat, Nor, Str, & Wir = Fat, Normal, Strong & Wiry respectively
 
-This then loads a .G3D file based on the body chosen.
-
-Van Buren breaks these down into parts.
+Van Buren then breaks these down into parts.
 
 	<Race><Gender><Bodytype>
 
-These may be used by the script commands:
+This combination loaded by the tech demo will then load the apropriate G3D(Granny 3d) model.
+
+These may be used by the Tech Demo's script commands:
 
 GetGender()
 SetGender()
