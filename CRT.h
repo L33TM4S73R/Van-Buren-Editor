@@ -48,7 +48,7 @@ int SetCRTRaceValue( )
 
 int GetCRTBodyValuePosition( )
 {
-	CRTBodyValuePosition = CRTRaceValuePosition + 4;
+	CRTBodyValuePosition = CRTRaceValuePosition + 4; // Hack method, works great, but something better would be nice.
 	debugf( "CRT Body Location: %d", CRTBodyValuePosition );
 
 	return 1;
@@ -90,6 +90,7 @@ void CRTEditMenu( )
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
 	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRTRaceValuePosition, CRTRaceValueSession );
+//	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRTGenderValuePosition, CRTGenderValueSession );
 	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRTBodyValuePosition, CRTBodyValueSession );
 	printf( "-----------------------------\n" );
 	printf( "1. *WIP-Broken* Edit Race\n" );
@@ -97,6 +98,7 @@ void CRTEditMenu( )
 	printf( "3. *WIP-Broken* Edit Body\n" );
 //	printf( "4. *UNAVAILABLE* Edit SPECIAL\n" );
 	printf( "-----------------------------\n" );
+	printf( "4. *WIP* Hex View\n" );
 	printf( "4. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 	getchar( );
@@ -108,11 +110,15 @@ void CRTEditMenu( )
 		case 2:
 			printf( "Disabled, Quitting!\n " );
 			exit( EXIT_SUCCESS );
+//			SetCRTGenderValue( );
 			break;
 		case 3:
 			SetCRTBodyValue( );
 			break;
 		case 4:
+			HexView( );
+			break;
+		case 5:
 			Quit( );
 			break;
 		default:
@@ -139,6 +145,7 @@ int CRTLoad( void )
 //	printf( "%s", string );
 
 //	HEY_REDNECK_HEY!	Put Position Finder here!
+	ValidateEntityFile( );
 	GetCRTRaceValuePosition( );
 	GetCRTRaceValue( );
 //	GetCRTGenderValuePosition( );

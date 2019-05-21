@@ -1,4 +1,4 @@
-// Project Presidents - Inauguration Tool CRT, ITM, & RLE Test written in C
+// Project Presidents - Inauguration Tool Test written in C
 
 #include "Global.h"
 
@@ -25,6 +25,7 @@ void PPITDisclaimer( ) // Simply just lets the user know this program is highly 
 	printf( "Right now, just consider this program a proof-of-concept/rough draft.\n" );
 	printf( "All things are liable to change, thank you!\n" );
 }
+#include "EEN2.h"
 
 #include "CRT.h"
 //#include "ITM.h"
@@ -45,10 +46,10 @@ void StartMenu( )
 		printf( "1. *WIP* Load a Human CRT(Creature) file\n" );
 //		printf( "2. *DISABLED* Load an ITM(Item) file\n" );
 //		printf( "3. *DISABLED* Load a RLE(Map Definition) file\n" );
-        	printf( "-----------------------------\n" );
+		printf( "-----------------------------\n" );
 		printf( "4. Write errors to external log file(for this session)\n" );
 		printf( "5. Toggle file export(for this session)\n" );
-	        printf( "-----------------------------\n" );
+		printf( "-----------------------------\n" );
 		printf( "6. Exit\n" );
 		scanf( " %d", &StartMenuInput );
 		getchar( );

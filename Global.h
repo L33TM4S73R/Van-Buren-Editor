@@ -53,22 +53,29 @@ char InputFileName[256], OutputFileName[256];
 /* The files to be input and output */
 FILE *InputFile, *OutputFile;
 
-/* CRT File Handling */
+char EntityIdentifier[5] = "EEN2"; // Environmental Entity Node v2? - Needs to be checked in all: AMO, ARM, CON, CRT, DOR, ITM, USE, and WEA files.
 
+/* CRT File Handling */
 char CRTRaceUserInput[4];
 int CRTRaceValuePosition;
 char CRTRaceValueSession[4];
+
+// Find a way to make the file search for "Hum" and compare it to CRTRaceValueSession.
 char CRTRaceHuman[4] = "Hum";
 
-int CRTSexValuePosition;
-char CRTSexM[2] = "M";
-char CRTSexF[2] = "F";
+//char CRTGenderUserInput;
+int CRTGenderValuePosition;
+char CRTGenderValueSession[2];
+
+// Find a way to make the file search for all of these and compare that to CRTGenderValueSession.
+char CRTGenderM[2] = "M";
+char CRTGenderF[2] = "F";
 
 char CRTBodyUserInput[4];
 int CRTBodyValuePosition;
 char CRTBodyValueSession[4];
 
-// Find a way to make the file search for all of these and have that be CRTBodySession.
+// Find a way to make the file search for all of these and compare that to CRTBodyValueSession.
 char CRTBodyStr[4] = "Str";
 char CRTBodyFat[4] = "Fat";
 char CRTBodyNor[4] = "Nor";
