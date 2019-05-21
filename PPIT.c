@@ -4,20 +4,9 @@
 
 #include "FileManagement.h"
 
-//#include "SetGender.H"
-//#include "SetBody.H"
-
-//#include "SetStrength.H"
-//#include "SetPerception.H"
-//#include "SetEndurance.H"
-//#include "SetCharisma.H"
-//#include "SetIntelligence.H"
-//#include "SetAgility.H"
-//#include "SetLuck.H"
-
 void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFFFFF artifacts
 {
-	perror( "Hex View Called.\n" );
+	debugf( "Hex View Called." );
 	int i;
 
 	printf( "Hex View of Input %s File :\n", InputFileName );
@@ -27,7 +16,7 @@ void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFF
 		if( !( ++i % 16 ) ) putc( '\n', stdout );
 	}
 	printf( "Done!\n" );
-	printf( "Hex View Finished!\n" );
+	debugf( "Hex View Finished." );
 }
 
 void PPITDisclaimer( ) // Simply just lets the user know this program is highly experimental and is a WIP
@@ -52,8 +41,6 @@ void StartMenu( )
 		printf( "-----------------------------\n" );
 		printf( "Inauguration Tool Start Menu\n" );
 		printf( "NOTE: Please refer to Technical Info.txt\n" );
-		printf( "-----------------------------\n" );
-		printf( "Inauguration Tool Test Menu - ITM\n" );
 		printf( "-----------------------------\n" );
 		printf( "1. *WIP* Load a Human CRT(Creature) file\n" );
 //		printf( "2. *DISABLED* Load an ITM(Item) file\n" );
