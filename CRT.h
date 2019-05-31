@@ -1,3 +1,10 @@
+int GetCRTFileSize( )
+{
+	fseek( InputFile, 8, SEEK_SET );
+	fread( CRTFileSize, 1, 1, InputFile );
+	return 1;
+	
+}
 int GetCRTRaceValuePosition( )
 {
 	char *pointer;
@@ -10,7 +17,7 @@ int GetCRTRaceValuePosition( )
 	}
 	else
 	{
-		printf( "File is either corrupt or an invalid .CRT" );
+		printf( "File is either corrupt or not a Human Creature file.\n" );
 		exit( EXIT_FAILURE );
 	}
 	return 1;
@@ -46,6 +53,44 @@ int SetCRTRaceValue( )
 	return 1;
 }
 
+int GetCRTGenderValuePosition( )
+{
+	CRTGenderValuePosition = CRTRaceValuePosition + 3; // Hack method, works great, but something better would be nice.
+	debugf( "CRT Gender Location: %d", CRTGenderValuePosition );
+	return 1;
+}
+
+int GetCRTGenderValue( )
+{
+	debugf( "GetCRTGenderValue Called" );
+
+	fseek( InputFile, CRTGenderValuePosition, SEEK_SET );
+	fread( CRTGenderValueSession, strlen( CRTGenderM ), 1, InputFile );
+	fseek( InputFile, 0, SEEK_SET );
+
+	return 1;
+}
+
+int SetCRTGenderValue( ) // Kind of want to use getchar( ) in this one, will rewrite later.
+{
+	printf( "Enter the desired 1-character gender type.\n" );
+	fflush(stdin);
+	if( fgets( CRTGenderUserInput, sizeof( CRTGenderUserInput ), stdin )!=NULL && strlen( CRTGenderUserInput ) == 1 )
+	{
+		printf( "Making Changes...\n" );
+		fseek( InputFile, CRTGenderValuePosition, SEEK_SET );
+		fwrite( CRTGenderUserInput , sizeof( char ), strlen( CRTGenderUserInput ), InputFile );
+		printf( "Finished!\n" );
+	}
+	else
+	{
+			printf( "Invalid Gender length: Either too small or too large.\n" );
+			exit( EXIT_FAILURE );
+	}
+	return 1;
+}
+
+
 int GetCRTBodyValuePosition( )
 {
 	CRTBodyValuePosition = CRTRaceValuePosition + 4; // Hack method, works great, but something better would be nice.
@@ -56,7 +101,7 @@ int GetCRTBodyValuePosition( )
 
 int GetCRTBodyValue( )
 {
-	debugf( "GetCRTBodyValue Called\n" );
+	debugf( "GetCRTBodyValue Called" );
 
 	fseek( InputFile, CRTBodyValuePosition, SEEK_SET );
 	fread( CRTBodyValueSession, strlen( CRTRaceHuman ), 1, InputFile );
@@ -90,16 +135,16 @@ void CRTEditMenu( )
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
 	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRTRaceValuePosition, CRTRaceValueSession );
-//	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRTGenderValuePosition, CRTGenderValueSession );
+	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRTGenderValuePosition, CRTGenderValueSession );
 	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRTBodyValuePosition, CRTBodyValueSession );
 	printf( "-----------------------------\n" );
-	printf( "1. *WIP-Broken* Edit Race\n" );
-//	printf( "2. *UNAVAILABLE* Edit Gender\n" );
-	printf( "3. *WIP-Broken* Edit Body\n" );
+	printf( "1. *WIP* Edit Race\n" );
+	printf( "2. *WIP* Edit Gender\n" );
+	printf( "3. *WIP* Edit Body\n" );
 //	printf( "4. *UNAVAILABLE* Edit SPECIAL\n" );
 	printf( "-----------------------------\n" );
 	printf( "4. *WIP* Hex View\n" );
-	printf( "4. Exit\n" );
+	printf( "5. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 	getchar( );
 	switch ( CRTEditMenuInput )
@@ -108,9 +153,7 @@ void CRTEditMenu( )
 			SetCRTRaceValue( );
 			break;
 		case 2:
-			printf( "Disabled, Quitting!\n " );
-			exit( EXIT_SUCCESS );
-//			SetCRTGenderValue( );
+			SetCRTGenderValue( );
 			break;
 		case 3:
 			SetCRTBodyValue( );
@@ -142,13 +185,15 @@ int CRTLoad( void )
 	}
 
 	FileString[fsize] = 0;
-//	printf( "%s", string );
 
-//	HEY_REDNECK_HEY!	Put Position Finder here!
 	ValidateEntityFile( );
+
+/*	Put Position Finders here! */
+	GetCRTFileSize( );
 	GetCRTRaceValuePosition( );
 	GetCRTRaceValue( );
-//	GetCRTGenderValuePosition( );
+	GetCRTGenderValuePosition( );
+	GetCRTGenderValue( );
 	GetCRTBodyValuePosition( );
 	GetCRTBodyValue( );
 

@@ -19,7 +19,7 @@ Repository structure:
 
 Disclaimer
 ----------------
-This program is as already stated, a Work-In-Progress, so .it can corrupt the files you are working on. Not all .CRT files are structured the same, mainly NPC vs PC .CRTs, where the NPC pulls name data from elsewhere(probably mission scripts), whereas PC defines it's own name.
+This program is as already stated, a Work-In-Progress, so it can corrupt the files you are working on. Not all .CRT files are structured the same, mainly NPC vs PC .CRTs, where the NPC pulls name data from elsewhere(probably mission scripts), whereas PC defines it's own name.
 
 Compiling & Contributing
 ----------------

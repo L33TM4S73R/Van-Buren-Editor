@@ -12,7 +12,7 @@ int ValidateEntityFile( )
 	}
 	else
 	{
-		printf( "File is either corrupt, not an Entity file, or or the wrong Entity version." );
+		printf( "File is either corrupt, not an Entity file, or the wrong Entity version." );
 		exit( EXIT_FAILURE );
 	}
 	return 1;

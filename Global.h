@@ -56,6 +56,9 @@ FILE *InputFile, *OutputFile;
 char EntityIdentifier[5] = "EEN2"; // Environmental Entity Node v2? - Needs to be checked in all: AMO, ARM, CON, CRT, DOR, ITM, USE, and WEA files.
 
 /* CRT File Handling */
+
+char CRTFileSize[2];
+
 char CRTRaceUserInput[4];
 int CRTRaceValuePosition;
 char CRTRaceValueSession[4];
@@ -64,6 +67,7 @@ char CRTRaceValueSession[4];
 char CRTRaceHuman[4] = "Hum";
 
 //char CRTGenderUserInput;
+char CRTGenderUserInput[2];
 int CRTGenderValuePosition;
 char CRTGenderValueSession[2];
 
