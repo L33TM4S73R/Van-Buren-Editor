@@ -1,3 +1,5 @@
+#include "SPECIAL.h"
+
 int GetCRTFileSize( )
 {
 	fseek( InputFile, 8, SEEK_SET );
@@ -141,10 +143,10 @@ void CRTEditMenu( )
 	printf( "1. *WIP* Edit Race\n" );
 	printf( "2. *WIP* Edit Gender\n" );
 	printf( "3. *WIP* Edit Body\n" );
-//	printf( "4. *UNAVAILABLE* Edit SPECIAL\n" );
+	printf( "4. *WIP* Edit SPECIAL\n" );
 	printf( "-----------------------------\n" );
-	printf( "4. *WIP* Hex View\n" );
-	printf( "5. Exit\n" );
+	printf( "5. *WIP* Hex View\n" );
+	printf( "6. Exit\n" );
 	scanf( " %d", &CRTEditMenuInput );
 	getchar( );
 	switch ( CRTEditMenuInput )
@@ -159,9 +161,12 @@ void CRTEditMenu( )
 			SetCRTBodyValue( );
 			break;
 		case 4:
-			HexView( );
+			SPECIALEditMenu( );
 			break;
 		case 5:
+			HexView( );
+			break;
+		case 6:
 			Quit( );
 			break;
 		default:

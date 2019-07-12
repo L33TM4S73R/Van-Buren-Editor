@@ -85,6 +85,9 @@ char CRTBodyFat[4] = "Fat";
 char CRTBodyNor[4] = "Nor";
 char CRTBodyWir[4] = "Wir";
 
+char CRTStrengthUserInput[2];
+int CRTStrengthValuePosition;
+char CRTStrengthValueSession[2];
 /* End of CRT File Handling */
 
 char EditMenuExtension;
