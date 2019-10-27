@@ -59,6 +59,9 @@ char EntityIdentifier[5] = "EEN2"; // Environmental Entity Node v2? - Needs to b
 
 char CRTFileSize[2];
 
+int CRTRGBValueLengthPosition;
+char CRTRGBValueLengthSession[2] = "0";
+
 char CRTRaceUserInput[4];
 int CRTRaceValuePosition;
 char CRTRaceValueSession[4];
@@ -73,7 +76,9 @@ char CRTGenderValueSession[2];
 
 // Find a way to make the file search for all of these and compare that to CRTGenderValueSession.
 char CRTGenderM[2] = "M";
+char CRTGenderMLowercase[2] = "m";
 char CRTGenderF[2] = "F";
+char CRTGenderFLowercase[2] = "f";
 
 char CRTBodyUserInput[4];
 int CRTBodyValuePosition;

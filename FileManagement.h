@@ -11,7 +11,7 @@ int OpenInputFile( char *InputFileName )
 {
 	if( !( InputFile = fopen( InputFileName,"r+" ) ) )
 	{
-		perror( "File Not Found, Quitting!\n" );
+		perror( "File could not be opened or found, Quiting!\n" );
 		exit( EXIT_FAILURE );
 	}
 	else

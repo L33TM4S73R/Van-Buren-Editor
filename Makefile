@@ -1,10 +1,9 @@
-# Compiles Inaugural Run
+# Compiles Project Presidents Inauguration Tool
 
-CC  = gcc -Wall -ansi
+CC  = gcc
 BIN = build/PPIT
 
-CFLAGS  = `sdl-config --cflags` -std=c99
-UNAME = $(shell uname -s)
+CFLAGS  = -std=c11
 
 all:
 	$(CC) PPIT.c $(CFLAGS) -o $(BIN)

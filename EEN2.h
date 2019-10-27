@@ -3,6 +3,7 @@
 
 int ValidateEntityFile( )
 {
+	debugf( "Checking for valid Entity identifier." );
 	char *pointer;
 
 	pointer=strstr( FileString,EntityIdentifier );

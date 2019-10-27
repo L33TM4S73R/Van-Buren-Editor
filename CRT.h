@@ -73,10 +73,24 @@ int GetCRTGenderValue( )
 
 int SetCRTGenderValue( ) // Kind of want to use getchar( ) in this one, will rewrite later.
 {
-	printf( "Enter the desired 1-character gender type.\n" );
+	printf( "Enter the desired 1-character gender type (M/F).\n" );
 	fflush(stdin);
 	if( fgets( CRTGenderUserInput, sizeof( CRTGenderUserInput ), stdin )!=NULL && strlen( CRTGenderUserInput ) == 1 )
 	{
+// Quick half-done Capitalization test
+		printf( "Checking capitalization..\n");
+		if( CRTGenderUserInput == CRTGenderFLowercase ) // Verify lowercase letter
+		{
+			
+			debugf( "Lowercase F entered!" );
+			CRTGenderUserInput == CRTGenderF;  // Convert to uppercase
+		}
+		else if( CRTGenderUserInput == CRTGenderMLowercase )  // Verify lowercase letter
+		{
+		
+			debugf( "Lowercase M entered!" );
+			CRTGenderUserInput == CRTGenderM;  // Convert to uppercase
+		}
 		printf( "Making Changes...\n" );
 		fseek( InputFile, CRTGenderValuePosition, SEEK_SET );
 		fwrite( CRTGenderUserInput , sizeof( char ), strlen( CRTGenderUserInput ), InputFile );
@@ -126,6 +140,26 @@ int SetCRTBodyValue( )
 			printf( "Invalid Body length: Either too small or too large.\n" );
 			exit( EXIT_FAILURE );
 	}
+	return 1;
+}
+
+int GetCRTRGBValueLengthPosition( )
+{
+	CRTRGBValueLengthPosition = CRTRaceValuePosition - 2; // Hack method, works great, but something better would be nice.
+	debugf( "CRT Race,Gender,Body Length Position Location: %d", CRTRGBValueLengthPosition );
+	return 1;
+}
+
+int GetCRTRGBValueLength( )
+{
+	debugf( "GetCRTRGBValueLength Called" );
+
+	fseek( InputFile, CRTRGBValueLengthPosition, SEEK_SET );
+	fread( CRTRGBValueLengthSession, strlen( CRTRGBValueLengthSession ), 1, InputFile );
+	fseek( InputFile, 0, SEEK_SET );
+
+	debugf( "Length of CRT Race,Gender, and Body combined: %02X", CRTRGBValueLengthSession );
+
 	return 1;
 }
 
@@ -196,6 +230,8 @@ int CRTLoad( void )
 	GetCRTGenderValue( );
 	GetCRTBodyValuePosition( );
 	GetCRTBodyValue( );
+	GetCRTRGBValueLengthPosition( );
+	GetCRTRGBValueLength( );
 
 	CRTEditMenu( );
 
