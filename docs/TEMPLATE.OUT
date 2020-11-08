@@ -1,0 +1,16 @@
+Environmental Entity Node 2
+
+Environmental Entity Variables
+
+Script = {00 Corporal Armstrong}
+Dialog = {CaptainArmstrong.amx}
+
+Skin = {Skin_HumM_Black01_LG.dds}
+
+Inventory = {Ammo223.AMO},{Ammo223.AMO},{Ammo223.AMO},{Ammo44.AMO},{Ammo44.AMO},{Ammo44.AMO},{Weapons44_Revolver.WEA}
+
+Global Creature
+
+Portrait = {port_armstrong.dds}
+
+Equip = {ArmorPower_Armor.ARM},{Weapons223_Minigun.WEA}

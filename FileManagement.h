@@ -1,8 +1,3 @@
-// C Standard Libraries
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 long fsize;
 char *FileString;
 char FileExportPrompt;
@@ -16,7 +11,7 @@ int OpenInputFile( char *InputFileName )
 	}
 	else
 	{
-		printf( "File loaded!\n" );
+		debugf( "Opening File.\n" );
 	}
 
 	return 1;
@@ -25,7 +20,7 @@ int OpenInputFile( char *InputFileName )
 int CreateOutputFile( char *OutputFileName )
 {
 	OutputFile = fopen( OutputFileName,"w" );
-	printf( "File Created!\n" );
+	printf( "Creating File.\n" );
 	
 	return 1;
 }
@@ -63,6 +58,8 @@ int FileExport( )
 				fclose( InputFile );
 				fclose( OutputFile );
 			}
+			else
+				printf(" Error writing to file! \n");
 		}
 	}
 	return 1;

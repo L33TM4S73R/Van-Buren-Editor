@@ -1,7 +1,9 @@
+struct CRT CRT;
+
 int GetCRTFileSize( )
 {
 	fseek( InputFile, 8, SEEK_SET );
-	fread( CRTFileSize, 1, 1, InputFile );
+	fread( CRT.FileSize, 1, 1, InputFile );
 	return 1;
 	
 }
@@ -12,8 +14,8 @@ int GetCRTRaceValuePosition( )
 	pointer=strstr( FileString,CRTRaceHuman );
 	if( pointer != NULL && pointer > 0 ) 
 	{
-		CRTRaceValuePosition = pointer - FileString;
-		debugf( "CRT Race Location: %d", CRTRaceValuePosition );
+		CRT.RaceValuePosition = pointer - FileString;
+		debugf( "CRT Race Location: %d", CRT.RaceValuePosition );
 	}
 	else
 	{
@@ -25,10 +27,10 @@ int GetCRTRaceValuePosition( )
 
 int GetCRTRaceValue( )
 {
-	debugf( "GetCRTRaceValue Called" );
+	debugf( "Getting Creature Race Value" );
 
-	fseek( InputFile, CRTRaceValuePosition, SEEK_SET );
-	fread( CRTRaceValueSession, strlen( CRTRaceHuman ), 1, InputFile );
+	fseek( InputFile, CRT.RaceValuePosition, SEEK_SET );
+	fread( CRT.RaceValueSession, strlen( CRTRaceHuman ), 1, InputFile );
 	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
@@ -37,12 +39,13 @@ int GetCRTRaceValue( )
 int SetCRTRaceValue( )
 {
 	printf( "Enter the desired 3-character race type.\n" );
+	printf( "Only known option is human: 'Hum'\n" );
 	fflush(stdin);
-	if( fgets( CRTRaceUserInput, sizeof( CRTRaceUserInput ), stdin )!=NULL && strlen( CRTRaceUserInput ) == 3 )
+	if( fgets( CRT.RaceUserInput, sizeof( CRT.RaceUserInput ), stdin )!=NULL && strlen( CRT.RaceUserInput ) == 3 )
 	{
 		printf( "Making Changes...\n" );
-		fseek( InputFile, CRTRaceValuePosition, SEEK_SET );
-		fwrite( CRTRaceUserInput , sizeof( char ), strlen( CRTRaceUserInput ), InputFile );
+		fseek( InputFile, CRT.RaceValuePosition, SEEK_SET );
+		fwrite( CRT.RaceUserInput , sizeof( char ), strlen( CRT.RaceUserInput ), InputFile );
 		printf( "Finished!\n" );
 	}
 	else
@@ -55,17 +58,17 @@ int SetCRTRaceValue( )
 
 int GetCRTGenderValuePosition( )
 {
-	CRTGenderValuePosition = CRTRaceValuePosition + 3; // Hack method, works great, but something better would be nice.
-	debugf( "CRT Gender Location: %d", CRTGenderValuePosition );
+	CRT.GenderValuePosition = CRT.RaceValuePosition + 3; // Hack method, works great, but something better would be nice.
+	debugf( "CRT Gender Location: %d", CRT.GenderValuePosition );
 	return 1;
 }
 
 int GetCRTGenderValue( )
 {
-	debugf( "GetCRTGenderValue Called" );
+	debugf( "Getting Creature Gender Value" );
 
-	fseek( InputFile, CRTGenderValuePosition, SEEK_SET );
-	fread( CRTGenderValueSession, strlen( CRTGenderM ), 1, InputFile );
+	fseek( InputFile, CRT.GenderValuePosition, SEEK_SET );
+	fread( CRT.GenderValueSession, strlen( CRTGenderM ), 1, InputFile );
 	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
@@ -75,25 +78,25 @@ int SetCRTGenderValue( ) // Kind of want to use getchar( ) in this one, will rew
 {
 	printf( "Enter the desired 1-character gender type (M/F).\n" );
 	fflush(stdin);
-	if( fgets( CRTGenderUserInput, sizeof( CRTGenderUserInput ), stdin )!=NULL && strlen( CRTGenderUserInput ) == 1 )
+	if( fgets( CRT.GenderUserInput, sizeof( CRT.GenderUserInput ), stdin )!=NULL && strlen( CRT.GenderUserInput ) == 1 )
 	{
 // Quick half-done Capitalization test
 		printf( "Checking capitalization..\n");
-		if( CRTGenderUserInput == CRTGenderFLowercase ) // Verify lowercase letter
+		if( CRT.GenderUserInput == CRTGenderFLowercase ) // Verify lowercase letter
 		{
 			
 			debugf( "Lowercase F entered!" );
-			CRTGenderUserInput == CRTGenderF;  // Convert to uppercase
+			CRT.GenderUserInput == CRTGenderF;  // Convert to uppercase
 		}
-		else if( CRTGenderUserInput == CRTGenderMLowercase )  // Verify lowercase letter
+		else if( CRT.GenderUserInput == CRTGenderMLowercase )  // Verify lowercase letter
 		{
 		
 			debugf( "Lowercase M entered!" );
-			CRTGenderUserInput == CRTGenderM;  // Convert to uppercase
+			CRT.GenderUserInput == CRTGenderM;  // Convert to uppercase
 		}
 		printf( "Making Changes...\n" );
-		fseek( InputFile, CRTGenderValuePosition, SEEK_SET );
-		fwrite( CRTGenderUserInput , sizeof( char ), strlen( CRTGenderUserInput ), InputFile );
+		fseek( InputFile, CRT.GenderValuePosition, SEEK_SET );
+		fwrite( CRT.GenderUserInput , sizeof( char ), strlen( CRT.GenderUserInput ), InputFile );
 		printf( "Finished!\n" );
 	}
 	else
@@ -107,7 +110,7 @@ int SetCRTGenderValue( ) // Kind of want to use getchar( ) in this one, will rew
 
 int GetCRTBodyValuePosition( )
 {
-	CRTBodyValuePosition = CRTRaceValuePosition + 4; // Hack method, works great, but something better would be nice.
+	CRTBodyValuePosition = CRT.RaceValuePosition + 4; // Hack method, works great, but something better would be nice.
 	debugf( "CRT Body Location: %d", CRTBodyValuePosition );
 
 	return 1;
@@ -145,20 +148,20 @@ int SetCRTBodyValue( )
 
 int GetCRTRGBValueLengthPosition( )
 {
-	CRTRGBValueLengthPosition = CRTRaceValuePosition - 2; // Hack method, works great, but something better would be nice.
-	debugf( "CRT Race,Gender,Body Length Position Location: %d", CRTRGBValueLengthPosition );
+	CRT.RGBValueLengthPosition = CRT.RaceValuePosition - 2; // Hack method, works great, but something better would be nice.
+	debugf( "CRT Race,Gender,Body Length Position Location: %d", CRT.RGBValueLengthPosition );
 	return 1;
 }
 
 int GetCRTRGBValueLength( )
 {
-	debugf( "GetCRTRGBValueLength Called" );
+	debugf( "Getting RGB Value Length" );
 
-	fseek( InputFile, CRTRGBValueLengthPosition, SEEK_SET );
-	fread( CRTRGBValueLengthSession, strlen( CRTRGBValueLengthSession ), 1, InputFile );
+	fseek( InputFile, CRT.RGBValueLengthPosition, SEEK_SET );
+	fread( CRT.RGBValueLengthSession, strlen( CRT.RGBValueLengthSession ), 1, InputFile );
 	fseek( InputFile, 0, SEEK_SET );
 
-	debugf( "Length of CRT Race,Gender, and Body combined: %02X", CRTRGBValueLengthSession );
+	debugf( "Length of CRT Race,Gender, and Body combined: %02X", CRT.RGBValueLengthSession );
 
 	return 1;
 }
@@ -168,14 +171,20 @@ void CRTEditMenu( )
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
-	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRTRaceValuePosition, CRTRaceValueSession );
-	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRTGenderValuePosition, CRTGenderValueSession );
+	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRT.RaceValuePosition, CRT.RaceValueSession );
+	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRT.GenderValuePosition, CRT.GenderValueSession );
 	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRTBodyValuePosition, CRTBodyValueSession );
 	printf( "-----------------------------\n" );
 	printf( "1. *WIP* Edit Race\n" );
 	printf( "2. *WIP* Edit Gender\n" );
 	printf( "3. *WIP* Edit Body\n" );
-//	printf( "4. *UNAVAILABLE* Edit SPECIAL\n" );
+//	printf( "-----------------------------\n" );
+//	printf( "4. *UNAVAILABLE* Edit Script\n" );
+//	printf( "5. *UNAVAILABLE* Edit Dialogue Script\n" );
+//	printf( "6. *UNAVAILABLE* Edit Skin Texture\n" );
+//	printf( "7. *UNAVAILABLE* Edit Inventory\n" );
+//	printf( "-----------------------------\n" );
+//	printf( "8. *UNAVAILABLE* Edit SPECIAL\n" );
 	printf( "-----------------------------\n" );
 	printf( "4. *WIP* Hex View\n" );
 	printf( "5. Exit\n" );
@@ -232,6 +241,8 @@ int CRTLoad( void )
 	GetCRTBodyValue( );
 	GetCRTRGBValueLengthPosition( );
 	GetCRTRGBValueLength( );
+//	GetCRTSkinValueLength( );
+//	GetCRTSkinValue( );
 
 	CRTEditMenu( );
 

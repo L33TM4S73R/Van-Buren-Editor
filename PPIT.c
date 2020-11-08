@@ -19,9 +19,9 @@ void HexView( ) // Calls up a Hexidecimal view of the current file, gets odd FFF
 	debugf( "Hex View Finished." );
 }
 
-void PPITDisclaimer( ) // Simply just lets the user know this program is highly experimental and is a WIP
+void PPITDisclaimer( ) // Lets the user know this program is highly experimental and is a WIP, will be removed as program progresses
 {
-	printf( "Many features in this program don't work or are highly experimental.\n" );
+	printf( "Some features in this program don't work or are highly experimental.\n" );
 	printf( "Right now, just consider this program a proof-of-concept/rough draft.\n" );
 	printf( "All things are liable to change, thank you!\n" );
 }
@@ -48,7 +48,7 @@ void StartMenu( )
 //		printf( "3. *DISABLED* Load a RLE(Map Definition) file\n" );
 		printf( "-----------------------------\n" );
 		printf( "4. Write errors to external log file(for this session)\n" );
-		printf( "5. Toggle file export(for this session)\n" );
+		printf( "5. Toggle file export(session will loop until exit)\n" );
 		printf( "-----------------------------\n" );
 		printf( "6. Exit\n" );
 		scanf( " %d", &StartMenuInput );
@@ -72,7 +72,7 @@ void StartMenu( )
 				printf( "Log file created.\n");
 				break;
 			case 5:
-				printf( "Do you wish to export files for this session?(Y/N): \n" );
+				printf( "Do you wish to export edited files?(Y/N): \n" );
     				scanf( " %c", &FileExportPrompt );
 				getchar( );
 
@@ -87,13 +87,16 @@ void StartMenu( )
 				exit( EXIT_FAILURE );
 				break;
 		}
-		char RestartPrompt ='y';
-    		printf( "Do you wish to continue this session?(Y/N): \n" );
-    		scanf( " %c", &RestartPrompt );
-		getchar( );
+		if( !ExportFiles )
+		{
+			char RestartPrompt ='y';
+    			printf( "Do you wish to continue this session?(Y/N): \n" );
+    			scanf( " %c", &RestartPrompt );
+			getchar( );
 
-    		if( RestartPrompt == 'n'|| RestartPrompt == 'N' )
-			Restart = 1;
+    			if( RestartPrompt == 'n'|| RestartPrompt == 'N' )
+				Restart = 1;
+		}
 	}
 	while( !Restart );
 		Quit( );
