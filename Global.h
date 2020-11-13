@@ -53,11 +53,11 @@ char InputFileName[256], OutputFileName[256];
 /* The files to be input and output */
 FILE *InputFile, *OutputFile;
 
-char EntityIdentifier[5] = "EEN2"; // Environmental Entity Node v2? - Needs to be checked in all: AMO, ARM, CON, CRT, DOR, ITM, USE, and WEA files.
+unsigned char EntityIdentifier[4]; // Environmental Entity Node v2? - Needs to be checked in all: AMO, ARM, CON, CRT, DOR, ITM, USE, and WEA files.
 
 /* CRT File Info */
 struct CRT {
-	char FileSize[2];
+	char FileSize[2]; // overall size of file in bytes
 
 // Race, Gender, Body Type
 	int RGBValueLengthPosition;
@@ -72,6 +72,11 @@ struct CRT {
 	char GenderUserInput[2];
 	int GenderValuePosition;
 	char GenderValueSession[2];
+
+// Body
+	char BodyUserInput[4];
+	int BodyValuePosition;
+	char BodyValueSession[4];
 };
 
 // Find a way to make the file search for "Hum" and compare it to CRTRaceValueSession.
@@ -82,10 +87,6 @@ char CRTGenderM[2] = "M";
 char CRTGenderMLowercase[2] = "m";
 char CRTGenderF[2] = "F";
 char CRTGenderFLowercase[2] = "f";
-
-char CRTBodyUserInput[4];
-int CRTBodyValuePosition;
-char CRTBodyValueSession[4];
 
 // Find a way to make the file search for all of these and compare that to CRTBodyValueSession.
 char CRTBodyStr[4] = "Str";

@@ -4,11 +4,11 @@
 int ValidateEntityFile( )
 {
 	debugf( "Checking for valid Entity identifier." );
-	char *pointer;
 
-	pointer=strstr( FileString,EntityIdentifier );
-	if( pointer != NULL && pointer > 0 ) 
-	{
+	fseek( InputFile, 0, SEEK_SET );
+	fread( EntityIdentifier, 4, 1, InputFile );
+	if ( EntityIdentifier[0] == 0x45 && EntityIdentifier[1] == 0x45 && EntityIdentifier[2] == 0x4E && EntityIdentifier[3] == 0x32 )
+	{ 
 		debugf( "File has a valid Entity identifier." );
 	}
 	else

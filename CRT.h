@@ -110,8 +110,8 @@ int SetCRTGenderValue( ) // Kind of want to use getchar( ) in this one, will rew
 
 int GetCRTBodyValuePosition( )
 {
-	CRTBodyValuePosition = CRT.RaceValuePosition + 4; // Hack method, works great, but something better would be nice.
-	debugf( "CRT Body Location: %d", CRTBodyValuePosition );
+	CRT.BodyValuePosition = CRT.RaceValuePosition + 4; // Hack method, works great, but something better would be nice.
+	debugf( "CRT Body Location: %d", CRT.BodyValuePosition );
 
 	return 1;
 }
@@ -120,8 +120,8 @@ int GetCRTBodyValue( )
 {
 	debugf( "GetCRTBodyValue Called" );
 
-	fseek( InputFile, CRTBodyValuePosition, SEEK_SET );
-	fread( CRTBodyValueSession, strlen( CRTRaceHuman ), 1, InputFile );
+	fseek( InputFile, CRT.BodyValuePosition, SEEK_SET );
+	fread( CRT.BodyValueSession, strlen( CRTRaceHuman ), 1, InputFile );
 	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
@@ -131,11 +131,11 @@ int SetCRTBodyValue( )
 {
 	printf( "Enter the desired 3-character body type.\n" );
 	fflush( stdin );
-	if( fgets( CRTBodyUserInput, sizeof( CRTBodyUserInput ), stdin )!=NULL && strlen( CRTBodyUserInput ) == 3 )
+	if( fgets( CRT.BodyUserInput, sizeof( CRT.BodyUserInput ), stdin )!=NULL && strlen( CRT.BodyUserInput ) == 3 )
 	{
 		printf( "Making Changes...\n" );
-		fseek( InputFile, CRTBodyValuePosition, SEEK_SET );
-		fwrite( CRTBodyUserInput , sizeof( char ), strlen( CRTBodyUserInput ), InputFile );
+		fseek( InputFile, CRT.BodyValuePosition, SEEK_SET );
+		fwrite( CRT.BodyUserInput , sizeof( char ), strlen( CRT.BodyUserInput ), InputFile );
 		printf( "Finished!\n" );
 	}
 	else
@@ -173,7 +173,7 @@ void CRTEditMenu( )
 	printf( "-----------------------------\n" );
 	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRT.RaceValuePosition, CRT.RaceValueSession );
 	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRT.GenderValuePosition, CRT.GenderValueSession );
-	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRTBodyValuePosition, CRTBodyValueSession );
+	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRT.BodyValuePosition, CRT.BodyValueSession );
 	printf( "-----------------------------\n" );
 	printf( "1. *WIP* Edit Race\n" );
 	printf( "2. *WIP* Edit Gender\n" );
