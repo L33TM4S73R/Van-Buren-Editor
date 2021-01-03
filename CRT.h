@@ -1,4 +1,5 @@
-struct CRT CRT;
+#ifndef _CRT_H_
+#define _CRT_H_
 
 int GetCRTFileSize( )
 {
@@ -7,21 +8,11 @@ int GetCRTFileSize( )
 	return 1;
 	
 }
+
 int GetCRTRaceValuePosition( )
 {
-	char *pointer;
-
-	pointer=strstr( FileString,CRTRaceHuman );
-	if( pointer != NULL && pointer > 0 ) 
-	{
-		CRT.RaceValuePosition = pointer - FileString;
-		debugf( "CRT Race Location: %d", CRT.RaceValuePosition );
-	}
-	else
-	{
-		printf( "File is either corrupt or not a Human Creature file.\n" );
-		exit( EXIT_FAILURE );
-	}
+	CRT.RaceValuePosition = 14; // Race Value Position is always 14
+	debugf( "CRT Race Location: %d", CRT.RaceValuePosition );
 	return 1;
 }
 
@@ -31,7 +22,6 @@ int GetCRTRaceValue( )
 
 	fseek( InputFile, CRT.RaceValuePosition, SEEK_SET );
 	fread( CRT.RaceValueSession, strlen( CRTRaceHuman ), 1, InputFile );
-	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
 }
@@ -51,7 +41,7 @@ int SetCRTRaceValue( )
 	else
 	{
 			printf( "Invalid Race length: Either too small or too large.\n" );
-			exit( EXIT_FAILURE );
+			SetCRTRaceValue( );
 	}
 	return 1;
 }
@@ -69,7 +59,6 @@ int GetCRTGenderValue( )
 
 	fseek( InputFile, CRT.GenderValuePosition, SEEK_SET );
 	fread( CRT.GenderValueSession, strlen( CRTGenderM ), 1, InputFile );
-	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
 }
@@ -122,7 +111,6 @@ int GetCRTBodyValue( )
 
 	fseek( InputFile, CRT.BodyValuePosition, SEEK_SET );
 	fread( CRT.BodyValueSession, strlen( CRTRaceHuman ), 1, InputFile );
-	fseek( InputFile, 0, SEEK_SET );
 
 	return 1;
 }
@@ -159,7 +147,6 @@ int GetCRTRGBValueLength( )
 
 	fseek( InputFile, CRT.RGBValueLengthPosition, SEEK_SET );
 	fread( CRT.RGBValueLengthSession, strlen( CRT.RGBValueLengthSession ), 1, InputFile );
-	fseek( InputFile, 0, SEEK_SET );
 
 	debugf( "Length of CRT Race,Gender, and Body combined: %02X", CRT.RGBValueLengthSession );
 
@@ -171,6 +158,7 @@ void CRTEditMenu( )
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
+	printf( "CRT File Size: %s, CRT true file size: %d\n", CRT.FileSize, fsize );
 	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRT.RaceValuePosition, CRT.RaceValueSession );
 	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRT.GenderValuePosition, CRT.GenderValueSession );
 	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRT.BodyValuePosition, CRT.BodyValueSession );
@@ -226,7 +214,6 @@ int CRTLoad( void )
 		OpenInputFile( InputFileName );
 		ReadFile( );
 	}
-
 	FileString[fsize] = 0;
 
 	ValidateEntityFile( );
@@ -248,3 +235,4 @@ int CRTLoad( void )
 
 	return 1;
 }
+#endif

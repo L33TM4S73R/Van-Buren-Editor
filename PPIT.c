@@ -84,7 +84,7 @@ void StartMenu( )
 				break;
 			default:
 				printf( "No Valid Input, Quitting!\n " );
-				exit( EXIT_FAILURE );
+				Quit();
 				break;
 		}
 		if( !ExportFiles )

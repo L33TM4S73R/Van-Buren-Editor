@@ -1,4 +1,3 @@
-long fsize;
 char *FileString;
 char FileExportPrompt;
 
@@ -29,9 +28,8 @@ int ReadFile( void )
 {
 	fseek( InputFile, 0, SEEK_END );
 	fsize = ftell( InputFile );
+	FileString = malloc( sizeof( fsize ) + 1 );
 	fseek( InputFile, 0, SEEK_SET );
-
-	FileString = malloc( fsize + 1 );
 	fread( FileString, 1, fsize, InputFile );
 
 	return 1;
@@ -60,6 +58,7 @@ int FileExport( )
 			}
 			else
 				printf(" Error writing to file! \n");
+				exit( EXIT_FAILURE );
 		}
 	}
 	return 1;

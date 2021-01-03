@@ -45,6 +45,7 @@ void Quit( )
 
 int Restart;
 int ExportFiles;
+int fsize;
 char ch;
 
 /* Stored Input/Output File Names */
@@ -78,6 +79,7 @@ struct CRT {
 	int BodyValuePosition;
 	char BodyValueSession[4];
 };
+struct CRT CRT;
 
 // Find a way to make the file search for "Hum" and compare it to CRTRaceValueSession.
 char CRTRaceHuman[4] = "Hum";
