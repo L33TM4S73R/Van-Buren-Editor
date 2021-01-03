@@ -10,6 +10,7 @@ int ValidateEntityFile( )
 	if ( EntityIdentifier[0] == 0x45 && EntityIdentifier[1] == 0x45 && EntityIdentifier[2] == 0x4E && EntityIdentifier[3] == 0x32 )
 	{ 
 		debugf( "File has a valid Entity identifier." );
+		fseek( InputFile, 0, SEEK_SET );
 	}
 	else
 	{
