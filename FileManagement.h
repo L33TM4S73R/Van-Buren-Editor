@@ -3,6 +3,7 @@ char FileExportPrompt;
 
 int OpenInputFile( char *InputFileName )
 {
+	debugf( "Opening file...\n" );
 	if( !( InputFile = fopen( InputFileName,"r+" ) ) )
 	{
 		perror( "File could not be opened or found, Quiting!\n" );
@@ -10,7 +11,7 @@ int OpenInputFile( char *InputFileName )
 	}
 	else
 	{
-		debugf( "Opening File.\n" );
+		debugf( "File opened.\n" );
 	}
 
 	return 1;
@@ -26,12 +27,17 @@ int CreateOutputFile( char *OutputFileName )
 
 int ReadFile( void )
 {
+	debugf( "Seeking to end of file...\n" );
 	fseek( InputFile, 0, SEEK_END );
+	debugf( "Getting size of file...\n" );
 	fsize = ftell( InputFile );
-	FileString = malloc( sizeof( fsize ) + 1 );
+	debugf( "Allocating file size...\n" );
+	FileString = malloc(  fsize + 1 );
+	debugf( "Seeking to beginning of file...\n" );
 	fseek( InputFile, 0, SEEK_SET );
+	debugf( "Reading file...\n" );
 	fread( FileString, 1, fsize, InputFile );
-
+	debugf( "File reading finished...\n" );
 	return 1;
 }
 
@@ -57,7 +63,7 @@ int FileExport( )
 				fclose( OutputFile );
 			}
 			else
-				printf(" Error writing to file! \n");
+				printf( "Error writing to file!\n" );
 				exit( EXIT_FAILURE );
 		}
 	}

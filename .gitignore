@@ -10,5 +10,14 @@ PPIT
 # Logs
 *.log
 
+#VB Files
+*.CRT
+*.crt
+*.ITM
+*.itm
+
 #Folders
 build/
+
+#Others
+*.lnk

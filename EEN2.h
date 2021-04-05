@@ -20,4 +20,11 @@ int ValidateEntityFile( )
 	return 1;
 }
 
+int GetEEN2HeaderSize( )
+{
+	fseek( InputFile, 8, SEEK_SET );
+	fread( EEN2.HeaderSize, 2, 1, InputFile );
+	return 1;
+}
+
 #endif

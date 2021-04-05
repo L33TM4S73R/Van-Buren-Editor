@@ -1,14 +1,6 @@
 #ifndef _CRT_H_
 #define _CRT_H_
 
-int GetCRTFileSize( )
-{
-	fseek( InputFile, 8, SEEK_SET );
-	fread( CRT.FileSize, 1, 1, InputFile );
-	return 1;
-	
-}
-
 int GetCRTRaceValuePosition( )
 {
 	CRT.RaceValuePosition = 14; // Race Value Position is always 14
@@ -158,7 +150,7 @@ void CRTEditMenu( )
 	int CRTEditMenuInput;
 	printf( "Inauguration Tool Editing Menu - CRT\n" );
 	printf( "-----------------------------\n" );
-	printf( "CRT File Size: %s, CRT true file size: %d\n", CRT.FileSize, fsize );
+	printf( "EEN2 Header Size: %d bytes, CRT File size: %d bytes\n", EEN2.HeaderSize, fsize );
 	printf( "CRT Race Location: %d, CRT Race Value: %s\n", CRT.RaceValuePosition, CRT.RaceValueSession );
 	printf( "CRT Gender Location: %d, CRT Gender Value: %s\n", CRT.GenderValuePosition, CRT.GenderValueSession );
 	printf( "CRT Body Location: %d, CRT Body Value: %s\n", CRT.BodyValuePosition, CRT.BodyValueSession );
@@ -217,9 +209,9 @@ int CRTLoad( void )
 	FileString[fsize] = 0;
 
 	ValidateEntityFile( );
+	GetEEN2HeaderSize( );
 
 /*	Put Position Finders here! */
-	GetCRTFileSize( );
 	GetCRTRaceValuePosition( );
 	GetCRTRaceValue( );
 	GetCRTGenderValuePosition( );

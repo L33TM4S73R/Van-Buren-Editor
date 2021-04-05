@@ -31,11 +31,11 @@ int debugf( char *message, ... )
 void Quit( )
 {
 	printf( "Cleaning up...\n" );
-//	#ifdef BUILD_LINUX
+	#ifdef BUILD_LINUX
 	system( "clear" );// Unix/Linux build
-//	#else
-//	system( "cls" );// Windows build
-//	#endif // BUILD_LINUX
+	#else
+	system( "cls" );// Windows build
+	#endif
 	printf( "Thank you for using this program.\n" );
 	printf( "Please report any suggestions or bugs to the Discord.\n");
 	exit ( EXIT_SUCCESS );
@@ -54,11 +54,20 @@ char InputFileName[256], OutputFileName[256];
 /* The files to be input and output */
 FILE *InputFile, *OutputFile;
 
+/* EEN2 Info */
+struct EEN2 {
+
+	char HeaderSize[4]; // overall size of header in bytes
+
+};
+struct EEN2 EEN2;
+
 unsigned char EntityIdentifier[4]; // Environmental Entity Node v2? - Needs to be checked in all: AMO, ARM, CON, CRT, DOR, ITM, USE, and WEA files.
+
+/* End of EEN2 Handling */
 
 /* CRT File Info */
 struct CRT {
-	char FileSize[2]; // overall size of file in bytes
 
 // Race, Gender, Body Type
 	int RGBValueLengthPosition;
@@ -97,6 +106,13 @@ char CRTBodyNor[4] = "Nor";
 char CRTBodyWir[4] = "Wir";
 
 /* End of CRT File Handling */
+
+/* ITM File Info */
+struct ITM {
+};
+struct ITM ITM;
+
+/* End of ITM File Handling */
 
 char EditMenuExtension;
 

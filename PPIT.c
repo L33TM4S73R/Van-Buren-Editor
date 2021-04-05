@@ -28,6 +28,7 @@ void PPITDisclaimer( ) // Lets the user know this program is highly experimental
 #include "EEN2.h"
 
 #include "CRT.h"
+//#include "MAP.h"
 //#include "ITM.h"
 //#include "RLE.h"
 
@@ -45,12 +46,13 @@ void StartMenu( )
 		printf( "-----------------------------\n" );
 		printf( "1. *WIP* Load a Human CRT(Creature) file\n" );
 //		printf( "2. *DISABLED* Load an ITM(Item) file\n" );
-//		printf( "3. *DISABLED* Load a RLE(Map Definition) file\n" );
+//		printf( "3. *DISABLED* Load a MAP(Map Entity Spawn Location) file\n" );
+//		printf( "4. *DISABLED* Load a RLE(Map Definition) file\n" );
 		printf( "-----------------------------\n" );
-		printf( "4. Write errors to external log file(for this session)\n" );
-		printf( "5. Toggle file export(session will loop until exit)\n" );
+		printf( "3. Write errors to external log file(for this session)\n" );
+		printf( "4. Toggle file export(session will loop until exit)\n" );
 		printf( "-----------------------------\n" );
-		printf( "6. Exit\n" );
+		printf( "5. Exit\n" );
 		scanf( " %d", &StartMenuInput );
 		getchar( );
 		switch ( StartMenuInput )
@@ -61,17 +63,18 @@ void StartMenu( )
 				break;
 			case 2:
 //				ITMLoad( );
-				FileExport( );
-				break;
-			case 3:
-//				RLELoad( );
+//				FileExport( );
 				printf( "Disabled!\n" );
 				break;
-			case 4:
+//			case 3:
+//				RLELoad( );
+//				printf( "Disabled!\n" );
+//				break;
+			case 3:
 				freopen( "error.log", "w", stderr );
 				printf( "Log file created.\n");
 				break;
-			case 5:
+			case 4:
 				printf( "Do you wish to export edited files?(Y/N): \n" );
     				scanf( " %c", &FileExportPrompt );
 				getchar( );
@@ -79,7 +82,7 @@ void StartMenu( )
 				if( FileExportPrompt == 'y'|| FileExportPrompt == 'Y' )
                 			ExportFiles = 1;
 				break;
-			case 6:
+			case 5:
 				Quit( );
 				break;
 			default:
